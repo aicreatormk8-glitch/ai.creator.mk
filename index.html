@@ -3,248 +3,473 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0a0a0f" />
-  <title>MK — AI Creator · Преміум</title>
+  <meta name="theme-color" content="#07070d" />
+  <title>MK — AI Creator · Premium Cinematic Studio</title>
   <meta name="description" content="MK — AI Creator. Преміум cinematic AI дизайн, відео, брендинг, сайти та автоматизації." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="MK — AI Creator · Преміум" />
+  <meta property="og:title" content="MK — AI Creator · Premium Cinematic Studio" />
   <meta property="og:description" content="Преміум cinematic AI дизайн, відео, брендинг, сайти та автоматизації." />
   <meta property="og:type" content="website" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🜂</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-noise" aria-hidden="true"></div>
+  <!-- Cursor -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
+  <!-- Background layers -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <canvas class="bg-canvas" id="bgCanvas" aria-hidden="true"></canvas>
+
+  <!-- ══ NAV ══════════════════════════════════════════ -->
   <header class="nav" id="nav">
     <a href="#hero" class="nav__brand">
       <span class="nav__logo">MK</span>
       <span class="nav__brand-text">AI&nbsp;Creator</span>
     </a>
-    <nav class="nav__links" id="navLinks">
+    <nav class="nav__links" id="navLinks" aria-label="Головне меню">
       <a href="#services">Послуги</a>
-      <a href="#why">Чому я</a>
-      <a href="#work">Роботи</a>
-      <a href="#voices">Відгуки</a>
+      <a href="#portfolio">Портфоліо</a>
+      <a href="#process">Процес</a>
+      <a href="#why">Переваги</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Контакти</a>
     </nav>
     <a href="#contact" class="btn btn--primary nav__cta">Замовити проєкт</a>
-    <button class="nav__burger" id="burger" aria-label="Меню">
+    <button class="nav__burger" id="burger" aria-label="Відкрити меню" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-  <section class="hero" id="hero" style="background-image: url('hero.jpg');">
-    <div class="hero__lights" aria-hidden="true"></div>
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero__vignette" aria-hidden="true"></div>
     <div class="hero__glow" aria-hidden="true"></div>
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
 
-    <div class="hero__inner reveal">
-      <span class="pill"><span class="pill__dot"></span> Преміум cinematic AI</span>
-      <h1 class="hero__title">
-        Створюю кінематографічний<br />
-        <span class="grad">AI візуал</span>
-      </h1>
-      <p class="hero__sub">
-        Я — <strong>MK</strong>. AI Creator, що перетворює фото, відео, брендинг
-        і сайти у преміум історію з neon glow ефектом.
-      </p>
-      <div class="hero__actions">
-        <a href="#contact" class="btn btn--primary btn--lg">Замовити проєкт</a>
-        <a href="#work" class="btn btn--ghost btn--lg">Переглянути роботи</a>
-      </div>
-    </div>
-
-    <div class="trustbar reveal">
-      <div class="trustbar__rating">
-        <div class="stars">★★★★★</div>
-        <div>
-          <strong>200+</strong>
-          <span>AI-проєктів premium рівня</span>
+    <div class="hero__content">
+      <div class="hero__inner reveal">
+        <span class="pill">
+          <span class="pill__dot"></span>
+          Premium Cinematic AI Studio
+        </span>
+        <h1 class="hero__title">
+          Кінематографічний<br>
+          <span class="grad">AI&nbsp;Візуал</span><br>
+          нового рівня
+        </h1>
+        <p class="hero__sub">
+          Я — <strong>MK</strong>. Перетворюю ідеї на преміум AI-контент:
+          фото, відео, брендинг і сайти з кінематографічною глибиною.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary btn--lg btn--glow">
+            Замовити проєкт
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#portfolio" class="btn btn--glass btn--lg">Переглянути роботи</a>
         </div>
       </div>
-      <div class="trustbar__sep"></div>
-      <div class="trustbar__logos">
-        <span class="tlogo">Midjourney</span>
-        <span class="tlogo">Runway</span>
-        <span class="tlogo">Stable Diffusion</span>
-        <span class="tlogo">ElevenLabs</span>
+
+      <div class="trustbar reveal" data-delay="180">
+        <div class="trustbar__stat">
+          <span class="trustbar__num" data-count="200">0</span><span class="trustbar__suf">+</span>
+          <span class="trustbar__label">AI проєктів</span>
+        </div>
+        <div class="trustbar__div"></div>
+        <div class="trustbar__stat">
+          <span class="trustbar__num" data-count="50">0</span><span class="trustbar__suf">+</span>
+          <span class="trustbar__label">Клієнтів</span>
+        </div>
+        <div class="trustbar__div"></div>
+        <div class="trustbar__stat">
+          <span class="trustbar__num" data-count="98">0</span><span class="trustbar__suf">%</span>
+          <span class="trustbar__label">Задоволені</span>
+        </div>
+        <div class="trustbar__div"></div>
+        <div class="trustbar__tools">
+          <span class="tlogo">Midjourney</span>
+          <span class="tlogo">Runway</span>
+          <span class="tlogo">Sora</span>
+          <span class="tlogo">ElevenLabs</span>
+        </div>
       </div>
     </div>
+
+    <div class="hero__scroll-hint" aria-hidden="true"><span></span></div>
   </section>
 
+  <!-- ══ SERVICES ══════════════════════════════════════ -->
   <section class="section" id="services">
     <div class="section__head reveal">
       <p class="eyebrow">Послуги</p>
-      <h2>AI рішення для тих, хто хоче <span class="grad">виглядати дорого</span>.</h2>
-      <p class="section__lead">
-        Створюю фото, відео, брендинг, сайти та автоматизації з атмосферою
-        преміум кіно та технологічною точністю.
-      </p>
+      <h2>AI рішення для тих, хто хоче<br><span class="grad">виглядати дорого</span></h2>
+      <p class="section__lead">Фото, відео, брендинг, сайти та автоматизації — з атмосферою преміум кіно.</p>
     </div>
+    <div class="cards-grid">
 
-    <div class="cards">
-      <article class="card reveal">
-        <div class="card__top"><span class="card__icon">📸</span><span class="card__arrow">↗</span></div>
-        <h3>AI фото</h3>
+      <article class="gcard reveal" data-delay="0">
+        <div class="gcard__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <h3>AI Фото</h3>
         <p>Кіношна предметна та lifestyle фотографія для соцмереж і бренду.</p>
+        <span class="gcard__arrow">↗</span>
       </article>
 
-      <article class="card reveal">
-        <div class="card__top"><span class="card__icon">🎬</span><span class="card__arrow">↗</span></div>
-        <h3>AI відео</h3>
+      <article class="gcard reveal" data-delay="70">
+        <div class="gcard__icon gcard__icon--cyan">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h3>AI Відео</h3>
         <p>Ролики з генерованими кадрами, світлом і рухом у стилі преміум.</p>
+        <span class="gcard__arrow">↗</span>
       </article>
 
-      <article class="card reveal">
-        <div class="card__top"><span class="card__icon">🛡</span><span class="card__arrow">↗</span></div>
+      <article class="gcard reveal" data-delay="140">
+        <div class="gcard__icon gcard__icon--orange">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
         <h3>Брендинг</h3>
         <p>Елегантні айдентика, логотип та guiding system для сильних брендів.</p>
+        <span class="gcard__arrow">↗</span>
       </article>
 
-      <article class="card reveal">
-        <div class="card__top"><span class="card__icon">🌐</span><span class="card__arrow">↗</span></div>
+      <article class="gcard reveal" data-delay="0">
+        <div class="gcard__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
         <h3>Сайти</h3>
-        <p>Лендінги та презентаційні платформи з глибиною, яскравою типографією і UX.</p>
+        <p>Лендінги та презентаційні платформи з глибиною та преміум UX.</p>
+        <span class="gcard__arrow">↗</span>
       </article>
 
-      <article class="card reveal">
-        <div class="card__top"><span class="card__icon">⚙️</span><span class="card__arrow">↗</span></div>
+      <article class="gcard reveal" data-delay="70">
+        <div class="gcard__icon gcard__icon--cyan">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
         <h3>Автоматизації</h3>
         <p>AI-воркфлоу, боти й процеси, що економлять час і підсилюють масштаб.</p>
+        <span class="gcard__arrow">↗</span>
       </article>
 
-      <article class="card reveal">
-        <div class="card__top"><span class="card__icon">✦</span><span class="card__arrow">↗</span></div>
-        <h3>Контент для соцмереж</h3>
+      <article class="gcard reveal" data-delay="140">
+        <div class="gcard__icon gcard__icon--orange">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Контент</h3>
         <p>Сторі, пости та відео у premium стилі, які збільшують охоплення.</p>
+        <span class="gcard__arrow">↗</span>
       </article>
+
     </div>
   </section>
 
-  <section class="why" id="why">
-    <div class="why__inner">
+  <!-- ══ PORTFOLIO ══════════════════════════════════════ -->
+  <div class="dark-band" id="portfolio">
+    <div class="dark-band__glow" aria-hidden="true"></div>
+    <div class="section">
       <div class="section__head reveal">
-        <p class="eyebrow eyebrow--light">Чому обирають мене</p>
-        <h2>Технології + смак. <span class="grad-light">Результат.</span></h2>
-        <p class="section__lead">
-          Я не просто генерую AI-медіа. Я будую комунікацію бренду і даю
-          людям емоцію, яка працює на зростання.
-        </p>
+        <p class="eyebrow eyebrow--dim">Портфоліо</p>
+        <h2 class="h2-light">Реальний вплив.<br><span class="grad">Доведений результат.</span></h2>
+        <p class="section__lead section__lead--light">Проєкти, де AI допоміг брендам вирости й виділитися.</p>
+      </div>
+      <div class="pf-grid">
+
+        <article class="pf-item reveal" data-delay="0">
+          <div class="pf-item__thumb pf-item__thumb--v">
+            <div class="pf-item__glare"></div>
+            <span class="pf-item__lbl">AI Фото</span>
+          </div>
+          <div class="pf-item__body">
+            <span class="ptag ptag--v">Генеративні світлини</span>
+            <h3>Кампанія «Neon Dreams»</h3>
+            <p>120+ унікальних зображень, що збільшили продажі fashion-бренду на 340%.</p>
+          </div>
+        </article>
+
+        <article class="pf-item reveal" data-delay="100">
+          <div class="pf-item__thumb pf-item__thumb--c">
+            <div class="pf-item__glare"></div>
+            <span class="pf-item__lbl">AI Відео</span>
+          </div>
+          <div class="pf-item__body">
+            <span class="ptag ptag--c">Кінематографія</span>
+            <h3>Промо-ролик стартапу</h3>
+            <p>Короткий відеоролик із преміальним світлом, що зібрав 2M переглядів.</p>
+          </div>
+        </article>
+
+        <article class="pf-item reveal" data-delay="200">
+          <div class="pf-item__thumb pf-item__thumb--o">
+            <div class="pf-item__glare"></div>
+            <span class="pf-item__lbl">Брендинг</span>
+          </div>
+          <div class="pf-item__body">
+            <span class="ptag ptag--o">Айдентика</span>
+            <h3>Айдентика «Aether Labs»</h3>
+            <p>Повна візуальна система для технологічного бренду, що вийшов на $1M ARR.</p>
+          </div>
+        </article>
+
+      </div>
+      <div class="pf-more reveal">
+        <a href="#contact" class="btn btn--glass btn--lg">Усі проєкти →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PROCESS ════════════════════════════════════════ -->
+  <section class="section" id="process">
+    <div class="section__head reveal">
+      <p class="eyebrow">Процес роботи</p>
+      <h2>Від ідеї до<br><span class="grad">кінематографічного результату</span></h2>
+      <p class="section__lead">Прозорий та ефективний процес, де кожен крок приносить цінність.</p>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-step reveal" data-delay="0">
+        <div class="proc-step__num">01</div>
+        <h3>Брифінг</h3>
+        <p>Детально обговорюємо цілі, аудиторію та візуальний напрямок проєкту.</p>
+      </div>
+      <div class="proc-step reveal" data-delay="90">
+        <div class="proc-step__num">02</div>
+        <h3>Концепт</h3>
+        <p>За 24 години готую перші концепти та мудборди для узгодження.</p>
+      </div>
+      <div class="proc-step reveal" data-delay="180">
+        <div class="proc-step__num">03</div>
+        <h3>Продакшн</h3>
+        <p>Генеруємо, відбираємо та опрацьовуємо фінальні матеріали.</p>
+      </div>
+      <div class="proc-step reveal" data-delay="270">
+        <div class="proc-step__num">04</div>
+        <h3>Доставка</h3>
+        <p>Передаю всі файли у потрібних форматах із повними правами на використання.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHY / BENEFITS ════════════════════════════════ -->
+  <div class="why-band" id="why">
+    <div class="why-band__glow" aria-hidden="true"></div>
+    <div class="section">
+      <div class="section__head reveal">
+        <p class="eyebrow eyebrow--dim">Переваги</p>
+        <h2 class="h2-light">Технологія + Смак =<br><span class="grad">Результат</span></h2>
+        <p class="section__lead section__lead--light">Я не просто генерую AI-медіа. Я будую комунікацію бренду, що дає емоцію.</p>
       </div>
 
-      <div class="steps">
-        <article class="step reveal">
-          <div class="step__top"><span class="step__num">01</span><span class="step__arrow">↗</span></div>
+      <div class="stats-row reveal">
+        <div class="stat">
+          <span class="stat__n" data-count="200">0</span><span class="stat__s">+</span>
+          <span class="stat__l">Преміум проєктів</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-count="50">0</span><span class="stat__s">+</span>
+          <span class="stat__l">Клієнтів</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-count="24">0</span><span class="stat__s">г</span>
+          <span class="stat__l">Перший концепт</span>
+        </div>
+        <div class="stat">
+          <span class="stat__n" data-count="98">0</span><span class="stat__s">%</span>
+          <span class="stat__l">Задоволені клієнти</span>
+        </div>
+      </div>
+
+      <div class="ben-grid">
+        <article class="ben reveal" data-delay="0">
+          <div class="ben__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
           <h3>Кіношний результат</h3>
           <p>Візуали, що виглядають як трейлер, а не як шаблон.</p>
         </article>
-        <article class="step reveal">
-          <div class="step__top"><span class="step__num">02</span><span class="step__arrow">↗</span></div>
+        <article class="ben reveal" data-delay="70">
+          <div class="ben__icon ben__icon--c">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
           <h3>Швидка ітерація</h3>
-          <p>Концепти за 24 години, правки без затримок.</p>
+          <p>Концепти за 24 години, правки без затримок і пояснень.</p>
         </article>
-        <article class="step reveal">
-          <div class="step__top"><span class="step__num">03</span><span class="step__arrow">↗</span></div>
-          <h3>Гармонія образу</h3>
-          <p>Світло, колір і стиль працюють разом в одному тоні.</p>
+        <article class="ben reveal" data-delay="140">
+          <div class="ben__icon ben__icon--o">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Гарантія якості</h3>
+          <p>Безлімітні правки до повного задоволення результатом.</p>
         </article>
-        <article class="step reveal">
-          <div class="step__top"><span class="step__num">04</span><span class="step__arrow">↗</span></div>
+        <article class="ben reveal" data-delay="0">
+          <div class="ben__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
           <h3>Підтримка бренду</h3>
           <p>Маркетинг, контент і автоматизації під одним управлінням.</p>
         </article>
+        <article class="ben reveal" data-delay="70">
+          <div class="ben__icon ben__icon--c">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Гармонія образу</h3>
+          <p>Світло, колір і стиль працюють разом в одному тоні бренду.</p>
+        </article>
+        <article class="ben reveal" data-delay="140">
+          <div class="ben__icon ben__icon--o">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Провідні AI інструменти</h3>
+          <p>Midjourney, Runway, Sora, ElevenLabs та десятки інших.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TESTIMONIALS ══════════════════════════════════ -->
+  <section class="section" id="voices">
+    <div class="section__head reveal">
+      <p class="eyebrow">Відгуки</p>
+      <h2>Мені довіряють<br><span class="grad">інноватори</span></h2>
+    </div>
+    <div class="voices-grid">
+      <figure class="vcard reveal" data-delay="0">
+        <div class="vcard__stars">★★★★★</div>
+        <p>«MK перетворив наш розмитий бриф на цілісну візуальну кампанію за тиждень. Магія.»</p>
+        <figcaption>
+          <span class="vcard__ava">А</span>
+          <span>
+            <strong>Анна К.</strong>
+            <span class="vcard__role">Founder, Fashion Brand</span>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="vcard reveal" data-delay="100">
+        <div class="vcard__stars">★★★★★</div>
+        <p>«Швидкість і якість, яких ми не очікували від AI. Тепер це частина нашого пайплайну.»</p>
+        <figcaption>
+          <span class="vcard__ava vcard__ava--c">Д</span>
+          <span>
+            <strong>Дмитро С.</strong>
+            <span class="vcard__role">CMO, SaaS Startup</span>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="vcard reveal" data-delay="200">
+        <div class="vcard__stars">★★★★★</div>
+        <p>«Найкраще — це смак. Багато хто вміє в AI, але результат MK виглядає дорого.»</p>
+        <figcaption>
+          <span class="vcard__ava vcard__ava--o">О</span>
+          <span>
+            <strong>Олена М.</strong>
+            <span class="vcard__role">Art Director</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ════════════════════════════════════════════ -->
+  <section class="section section--narrow" id="faq">
+    <div class="section__head reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Часті<br><span class="grad">запитання</span></h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">
+          Скільки коштують ваші послуги?
+          <span class="faq__ico" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a" role="region">
+          <p>Вартість залежить від обсягу та складності. AI фото — від $50 за сет. AI відео — від $150. Брендинг — від $300. Сайти — від $500. Пишіть для точного розрахунку.</p>
+        </div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">
+          Як швидко отримаю перший результат?
+          <span class="faq__ico" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a" role="region">
+          <p>Перші концепти надсилаю протягом 24 годин після отримання брифу та оплати. Фінальний результат — 2–5 днів залежно від масштабу.</p>
+        </div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">
+          Скільки правок включено?
+          <span class="faq__ico" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a" role="region">
+          <p>Необмежені правки на етапі концепції. Після фінального узгодження — 2 раунди правок без доплат.</p>
+        </div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">
+          Які права на результати роботи?
+          <span class="faq__ico" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a" role="region">
+          <p>Ви отримуєте повні комерційні права на всі фінальні матеріали. Я можу використати роботи у портфоліо, якщо не заперечуєте.</p>
+        </div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">
+          Як проходить оплата?
+          <span class="faq__ico" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a" role="region">
+          <p>50% передоплата на старті, 50% після фінального затвердження. Приймаю Wise, PayPal, криптовалюту та банківський переказ.</p>
+        </div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">
+          Чи можна замовити щомісячну підписку?
+          <span class="faq__ico" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__a" role="region">
+          <p>Так, є пакети підтримки: контент для соцмереж, регулярні AI фото та відео за фіксованою щомісячною ставкою. Деталі — у листуванні.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="work">
-    <div class="section__head reveal">
-      <p class="eyebrow">Вибрані роботи</p>
-      <h2>Реальний вплив. <span class="grad">Доведений результат.</span></h2>
-      <p class="section__lead">Кілька проєктів, де AI допоміг брендам вирости й виділитися.</p>
-    </div>
-
-    <div class="work">
-      <article class="work__item reveal" style="--accent:#7c5cff">
-        <div class="work__media"><span>AI Фото</span></div>
-        <div class="work__body">
-          <span class="tag">Генеративні світлини</span>
-          <h3>Кампанія «Neon Dreams»</h3>
-          <p>120+ унікальних зображень, що збільшили продажі fashion-бренду.</p>
-        </div>
-      </article>
-
-      <article class="work__item reveal" style="--accent:#3ee0c0">
-        <div class="work__media work__media--2"><span>AI Відео</span></div>
-        <div class="work__body">
-          <span class="tag">Кінематографія</span>
-          <h3>Промо-ролик стартапу</h3>
-          <p>Короткий відеоролик з преміальним світлом і атмосферою.</p>
-        </div>
-      </article>
-
-      <article class="work__item reveal" style="--accent:#ff8e3e">
-        <div class="work__media work__media--3"><span>Брендинг</span></div>
-        <div class="work__body">
-          <span class="tag">Айдентика</span>
-          <h3>Айдентика «Aether Labs»</h3>
-          <p>Повна візуальна система для технологічного бренду.</p>
-        </div>
-      </article>
-    </div>
-
-    <div class="work__more reveal">
-      <a href="#contact" class="btn btn--ghost">Усі проєкти →</a>
-    </div>
-  </section>
-
-  <section class="voices" id="voices">
-    <div class="section__head reveal">
-      <p class="eyebrow">Відгуки</p>
-      <h2>Мені довіряють <span class="grad">інноватори</span></h2>
-    </div>
-    <div class="voices__row">
-      <figure class="voice reveal">
-        <p>«MK перетворив наш розмитий бриф на цілісну візуальну кампанію за тиждень. Магія.»</p>
-        <figcaption><span class="voice__ava">A</span><span><strong>Анна К.</strong><br />Founder, Fashion Brand</span></figcaption>
-      </figure>
-      <figure class="voice reveal">
-        <p>«Швидкість і якість, яких ми не очікували від AI. Тепер це частина нашого пайплайну.»</p>
-        <figcaption><span class="voice__ava">D</span><span><strong>Дмитро С.</strong><br />CMO, SaaS Startup</span></figcaption>
-      </figure>
-      <figure class="voice reveal">
-        <p>«Найкраще — це смак. Багато хто вміє в AI, але результат MK виглядає дорого.»</p>
-        <figcaption><span class="voice__ava">O</span><span><strong>Олена М.</strong><br />Art Director</span></figcaption>
-      </figure>
-    </div>
-  </section>
-
+  <!-- ══ CTA / CONTACT ══════════════════════════════════ -->
   <section class="cta" id="contact">
     <div class="cta__glow" aria-hidden="true"></div>
     <div class="cta__inner reveal">
-      <p class="eyebrow eyebrow--light">Готові почати?</p>
-      <h2>Замовити проєкт <span class="grad-light">преміум рівня</span></h2>
-      <p class="section__lead">Розкажи про ідею — і вже завтра побачиш перші концепти.</p>
+      <p class="eyebrow eyebrow--dim">Готові почати?</p>
+      <h2 class="h2-light">Замовити проєкт<br><span class="grad">преміум рівня</span></h2>
+      <p class="section__lead section__lead--light">Розкажи про ідею — і вже завтра побачиш перші концепти.</p>
       <div class="cta__actions">
-        <a href="mailto:aicreatormk8@gmail.com" class="btn btn--primary btn--lg">Замовити проєкт</a>
-        <a href="#work" class="btn btn--ghost btn--lg">Переглянути роботи</a>
+        <a href="mailto:aicreatormk8@gmail.com" class="btn btn--primary btn--lg btn--glow">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Написати листа
+        </a>
+        <a href="#portfolio" class="btn btn--glass btn--lg">Переглянути роботи</a>
       </div>
+      <p class="cta__email">aicreatormk8@gmail.com</p>
     </div>
   </section>
 
+  <!-- ══ FOOTER ══════════════════════════════════════════ -->
   <footer class="footer">
-    <div class="footer__brand"><span class="nav__logo">MK</span> AI Creator</div>
-    <p>© <span id="year"></span> MK. Створено з ❤️ та AI.</p>
-    <div class="footer__social">
-      <a href="#" aria-label="Instagram">Instagram</a>
-      <a href="#" aria-label="Behance">Behance</a>
-      <a href="#" aria-label="YouTube">YouTube</a>
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="nav__logo">MK</span>
+        <span class="footer__name">AI Creator</span>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> MK AI Creator. Створено з ❤️ та AI.</p>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Behance">Behance</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+        <a href="#" aria-label="Telegram">Telegram</a>
+      </div>
     </div>
   </footer>
 
