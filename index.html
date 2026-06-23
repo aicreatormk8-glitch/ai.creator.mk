@@ -43,88 +43,68 @@
     </button>
   </header>
 
-  <!-- ══ HERO — split layout, img tag ═══════════════════════ -->
+  <!-- ══ HERO — fullscreen cinematic background ═══════════════════════ -->
   <section class="hero" id="hero">
-
-    <!-- Floating light orbs — JS will populate this -->
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero__blobs" aria-hidden="true">
+      <div class="hero__blob hero__blob--cyan"></div>
+      <div class="hero__blob hero__blob--violet"></div>
+      <div class="hero__blob hero__blob--pink"></div>
+      <div class="hero__blob hero__blob--orange"></div>
+    </div>
+    <div class="hero__streak hero__streak--one" aria-hidden="true"></div>
+    <div class="hero__streak hero__streak--two" aria-hidden="true"></div>
     <div class="hero__orbs" id="heroOrbs" aria-hidden="true"></div>
-
-    <!-- Canvas: small dot particles + network -->
     <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
 
-    <!-- Two-column grid -->
-    <div class="hero__grid">
-
-      <!-- LEFT: text -->
-      <div class="hero__left">
-        <div class="hero__text" id="heroText">
-          <span class="pill">
-            <span class="pill__dot"></span>
-            Premium Cinematic AI Studio
-          </span>
-          <h1 class="hero__title">
-            Кінематографічний<br>
-            <span class="grad">AI&nbsp;Візуал</span><br>
-            нового рівня
-          </h1>
-          <p class="hero__sub">
-            Я — <strong>MK</strong>. Перетворюю ідеї на преміум AI-контент:
-            фото, відео, брендинг і сайти з кінематографічною глибиною.
-          </p>
-          <div class="hero__actions">
-            <a href="#contact" class="btn btn--primary btn--lg btn--glow">
-              Замовити проєкт
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="#portfolio" class="btn btn--glass btn--lg">Переглянути роботи</a>
-          </div>
-        </div>
-
-        <!-- Trust bar -->
-        <div class="trustbar" id="trustbar">
-          <div class="trustbar__stat">
-            <span class="trustbar__num" data-count="200">0</span><span class="trustbar__suf">+</span>
-            <span class="trustbar__label">AI проєктів</span>
-          </div>
-          <div class="trustbar__div"></div>
-          <div class="trustbar__stat">
-            <span class="trustbar__num" data-count="50">0</span><span class="trustbar__suf">+</span>
-            <span class="trustbar__label">Клієнтів</span>
-          </div>
-          <div class="trustbar__div"></div>
-          <div class="trustbar__stat">
-            <span class="trustbar__num" data-count="98">0</span><span class="trustbar__suf">%</span>
-            <span class="trustbar__label">Задоволені</span>
-          </div>
-          <div class="trustbar__div"></div>
-          <div class="trustbar__tools">
-            <span class="tlogo">Midjourney</span>
-            <span class="tlogo">Runway</span>
-            <span class="tlogo">Sora</span>
-            <span class="tlogo">ElevenLabs</span>
-          </div>
+    <div class="hero__content">
+      <div class="hero__inner reveal" data-delay="0">
+        <span class="pill">
+          <span class="pill__dot"></span>
+          Premium Cinematic AI Studio
+        </span>
+        <h1 class="hero__title">
+          Розкішний AI
+          <span class="grad">студійний візуал</span><br>
+          для брендів нового рівня
+        </h1>
+        <p class="hero__sub">
+          MK створює не просто сторінки — це преміум AI-презентації з кінематографічною глибиною, світлом і атмосферою дорогого студійного продукту.
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary btn--lg btn--glow">
+            Замовити проєкт
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#portfolio" class="btn btn--glass btn--lg">Переглянути роботи</a>
         </div>
       </div>
 
-      <!-- RIGHT: full image, no crop -->
-      <div class="hero__right">
-        <div class="hero__img-wrap" id="heroImgWrap">
-          <!-- Glow behind the figure -->
-          <div class="hero__img-glow" aria-hidden="true"></div>
-          <!-- The actual image — displayed in full, no cover crop -->
-          <img
-            src="hero.jpg"
-            alt="MK AI Creator — дівчина з роботом"
-            class="hero__photo"
-            id="heroPhoto"
-            draggable="false"
-          />
+      <div class="trustbar reveal" id="trustbar" data-delay="120">
+        <div class="trustbar__stat">
+          <span class="trustbar__num" data-count="200">0</span><span class="trustbar__suf">+</span>
+          <span class="trustbar__label">AI проєктів</span>
+        </div>
+        <div class="trustbar__div"></div>
+        <div class="trustbar__stat">
+          <span class="trustbar__num" data-count="50">0</span><span class="trustbar__suf">+</span>
+          <span class="trustbar__label">клієнтів</span>
+        </div>
+        <div class="trustbar__div"></div>
+        <div class="trustbar__stat">
+          <span class="trustbar__num" data-count="98">0</span><span class="trustbar__suf">%</span>
+          <span class="trustbar__label">проєктів завершено</span>
+        </div>
+        <div class="trustbar__div"></div>
+        <div class="trustbar__tools">
+          <span class="tlogo">Midjourney</span>
+          <span class="tlogo">Runway</span>
+          <span class="tlogo">Sora</span>
+          <span class="tlogo">ElevenLabs</span>
         </div>
       </div>
+    </div>
 
-    </div><!-- /.hero__grid -->
-
-    <!-- Scroll indicator -->
     <div class="hero__scroll-hint" aria-hidden="true"><span></span></div>
   </section>
 

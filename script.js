@@ -216,29 +216,24 @@
   }
 
   /* ── Hero parallax (scroll + mouse) ────────────── */
-  var heroBg    = document.getElementById("heroBg");
-  var heroInner = document.querySelector(".hero__inner");
   var hero      = document.querySelector(".hero");
+  var heroInner = document.querySelector(".hero__inner");
 
   if (!PRM) {
-    /* scroll parallax */
     function scrollPx() {
       var sy = window.scrollY;
-      if (heroBg) {
-        heroBg.style.transform =
-          "translate3d(" + (heroBg._mx || 0) + "px," +
-          ((heroBg._my || 0) + sy * 0.30) + "px,0) scale(1.06)";
+      if (hero) {
+        hero.style.setProperty("--hero-bg-y", ((hero._my || 0) + sy * 0.12).toFixed(2) + "px");
       }
       if (heroInner) {
         heroInner.style.transform =
           "translate3d(" + (heroInner._mx || 0) + "px," +
-          ((heroInner._my || 0) - sy * 0.07) + "px,0)";
+          ((heroInner._my || 0) + sy * 0.03) + "px,0)";
       }
     }
     window.addEventListener("scroll", scrollPx, { passive: true });
 
-    /* mouse parallax */
-    if (hero && heroInner && heroBg) {
+    if (hero && heroInner) {
       var tmx2 = 0, tmy2 = 0, lmx2 = 0, lmy2 = 0;
       hero.addEventListener("mousemove", function (e) {
         var r = hero.getBoundingClientRect();
@@ -249,10 +244,12 @@
       (function mLoop() {
         lmx2 += (tmx2 - lmx2) * 0.07;
         lmy2 += (tmy2 - lmy2) * 0.07;
-        heroInner._mx = +(lmx2 * 0.55).toFixed(2);
+        heroInner._mx = +(lmx2 * 0.85).toFixed(2);
         heroInner._my = +lmy2.toFixed(2);
-        heroBg._mx    = +(lmx2 * 0.06).toFixed(2);
-        heroBg._my    = +(lmy2 * 0.04).toFixed(2);
+        if (hero) {
+          hero.style.setProperty("--hero-bg-x", +(lmx2 * 0.03).toFixed(2) + "px");
+          hero.style.setProperty("--hero-bg-y", +(lmy2 * 0.05).toFixed(2) + "px");
+        }
         scrollPx();
         requestAnimationFrame(mLoop);
       })();
