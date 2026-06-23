@@ -64,8 +64,8 @@
       ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
       ctx.fillRect(0, 0, w, h);
 
-      ctx.strokeStyle = "rgba(0, 212, 255, 0.15)";
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(0, 255, 255, 0.35)";
+      ctx.lineWidth = 1.5;
 
       for (let p of points) {
         p.x = p.ox + Math.sin(t + p.ox / 100) * 20 + Math.cos(t * 0.5 + p.oy / 100) * 15;
@@ -145,9 +145,13 @@
         p.dataset.vx = vx;
         p.dataset.vy = vy;
 
+        const shimmer = Math.sin(pTime + idx * 0.5) * 50;
+        const scale = 1 + Math.sin(pTime * 2 + idx) * 0.4;
         p.style.left = x + "%";
         p.style.top = y + "%";
-        p.style.opacity = Math.max(0.3, 1 - y / 100);
+        p.style.opacity = Math.max(0.2, 1 - y / 100);
+        p.style.boxShadow = `0 0 ${20 + shimmer}px ${p.style.background}`;
+        p.style.transform = `scale(${scale}) translateZ(${Math.sin(pTime + idx) * 30}px)`;
       });
       requestAnimationFrame(animateParticles);
     }

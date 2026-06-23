@@ -2,25 +2,25 @@
    MK — AI Creator · Luxury Cinematic Design System
    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ */
 :root {
-  --bg: #0a0a14;
-  --bg-dark: #050509;
-  --bg-light: #12121f;
+  --bg: #050510;
+  --bg-dark: #020204;
+  --bg-light: #0f0f23;
 
-  --text: #f5f5ff;
-  --text-muted: rgba(245, 245, 255, 0.7);
-  --text-dim: rgba(245, 245, 255, 0.5);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.75);
+  --text-dim: rgba(255, 255, 255, 0.55);
 
-  --electric-blue: #00d4ff;
-  --cyan: #00d9ff;
-  --violet: #a855f7;
-  --purple: #9d7bff;
-  --pink: #ff006e;
-  --orange: #ff8c42;
+  --electric-blue: #00ffff;
+  --cyan: #00f0ff;
+  --violet: #c833ff;
+  --purple: #b24bff;
+  --pink: #ff0066;
+  --orange: #ff6b35;
 
-  --grad-neon: linear-gradient(120deg, #00d4ff 0%, #a855f7 50%, #ff006e 100%);
-  --grad-electric: linear-gradient(110deg, #00d4ff 0%, #7c5cff 50%, #ff006e 100%);
-  --grad-pink: linear-gradient(110deg, #ff006e 0%, #a855f7 100%);
-  --grad-cyan: linear-gradient(110deg, #00d4ff 0%, #3ee0c0 100%);
+  --grad-neon: linear-gradient(120deg, #00ffff 0%, #c833ff 50%, #ff0066 100%);
+  --grad-electric: linear-gradient(110deg, #00ffff 0%, #b24bff 50%, #ff0066 100%);
+  --grad-pink: linear-gradient(110deg, #ff0066 0%, #c833ff 100%);
+  --grad-cyan: linear-gradient(110deg, #00ffff 0%, #00ff88 100%);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -59,6 +59,7 @@ body {
   position: fixed; inset: 0; z-index: 1;
   width: 100%; height: 100vh;
   overflow: hidden;
+  perspective: 1000px;
 }
 
 .hero__bg {
@@ -137,6 +138,13 @@ body {
 .particle {
   position: absolute; border-radius: 50%;
   filter: blur(2px);
+  animation: sparkle 3s ease-in-out infinite;
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; transform: scale(1) translateZ(0); }
+  25% { opacity: 1; transform: scale(1.3) translateZ(20px); }
+  50% { opacity: 0.3; transform: scale(0.8) translateZ(-10px); }
+  75% { opacity: 0.9; transform: scale(1.2) translateZ(15px); }
 }
 
 /* Neon border top */
@@ -238,7 +246,7 @@ body {
   line-height: 1.05; font-weight: 800;
   margin-bottom: 1.8rem;
   color: var(--text);
-  text-shadow: 0 0 30px rgba(0,212,255,0.3), 0 0 60px rgba(168,85,247,0.15);
+  text-shadow: 0 0 40px rgba(0,255,255,0.6), 0 0 80px rgba(200,51,255,0.4), 0 0 120px rgba(255,0,102,0.2);
 }
 .hero__title .word {
   display: inline-block;
@@ -282,12 +290,14 @@ body {
 .btn--magnetic {
   background: var(--grad-neon);
   color: var(--bg);
-  box-shadow: 0 0 30px rgba(0,212,255,0.4), 0 0 60px rgba(168,85,247,0.2);
+  box-shadow: 0 0 40px rgba(0,255,255,0.6), 0 0 80px rgba(200,51,255,0.4);
+  transform-style: preserve-3d;
 }
 .btn--magnetic:hover {
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-4px) scale(1.05) perspective(1000px) rotateX(5deg);
+  box-shadow: 0 0 60px rgba(0,255,255,0.8), 0 0 100px rgba(200,51,255,0.6), 0 0 20px rgba(255,0,102,0.4);
 }
-.btn--magnetic:hover .btn__glow { opacity: 1; }
+.btn--magnetic:hover .btn__glow { opacity: 1; filter: blur(30px); }
 
 .btn--ghost-neon {
   background: transparent;
@@ -429,16 +439,18 @@ body {
   border-radius: 28px;
   background: rgba(20, 20, 35, 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,212,255,0.1);
+  border: 2px solid rgba(0,255,255,0.15);
   transition: all 0.4s var(--ease);
   overflow: hidden;
   group: card;
+  transform-style: preserve-3d;
 }
 
 .card:hover {
-  transform: translateY(-12px);
-  border-color: rgba(0,212,255,0.3);
-  background: rgba(20, 20, 35, 0.8);
+  transform: translateY(-12px) perspective(1000px) rotateX(8deg) rotateY(-8deg);
+  border-color: rgba(0,255,255,0.5);
+  background: rgba(20, 20, 35, 0.95);
+  box-shadow: 0 0 40px rgba(0,255,255,0.4), 0 0 60px rgba(200,51,255,0.2);
 }
 
 .card__bg {
@@ -561,13 +573,15 @@ body {
   border-radius: 24px;
   overflow: hidden;
   background: rgba(20, 20, 35, 0.5);
-  border: 1px solid rgba(0,212,255,0.08);
+  border: 2px solid rgba(0,255,255,0.1);
   transition: all 0.4s var(--ease);
+  transform-style: preserve-3d;
 }
 
 .work-item:hover {
-  transform: translateY(-8px);
-  border-color: rgba(0,212,255,0.2);
+  transform: translateY(-10px) perspective(1000px) rotateX(6deg) rotateY(4deg);
+  border-color: rgba(0,255,255,0.4);
+  box-shadow: 0 0 50px rgba(0,255,255,0.4), 0 0 80px rgba(200,51,255,0.2);
 }
 
 .work-item__media {
