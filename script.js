@@ -1,174 +1,199 @@
-/* MK — AI Creator · interactions */
+/* Marina Kalashnikova — AI Creator Studio · interactions */
 (function () {
   "use strict";
 
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ── Year in footer ── */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ── Navbar background on scroll ── */
   var nav = document.getElementById("nav");
   var onScroll = function () {
     if (window.scrollY > 24) nav.classList.add("scrolled");
     else nav.classList.remove("scrolled");
-
-    // gentle parallax for hero content
-    var heroInner = document.querySelector('.hero__inner');
-    if (heroInner) {
-      var offset = Math.min(window.scrollY * 0.12, 140);
-      // combine with any existing mouse parallax by writing full transform in animation loop
-      heroInner.dataset.scrollOffset = offset;
-    }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ── Mobile menu ── */
   var burger = document.getElementById("burger");
   var links = document.getElementById("navLinks");
   if (burger && links) {
     burger.addEventListener("click", function () {
-      links.classList.toggle("open");
-      burger.classList.toggle("active");
+      var open = links.classList.toggle("open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Закрити меню" : "Відкрити меню");
     });
     links.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () { links.classList.remove("open"); burger.classList.remove("active"); });
+      a.addEventListener("click", function () {
+        links.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
+        burger.setAttribute("aria-label", "Відкрити меню");
+      });
     });
   }
 
-  // Reveal on scroll
+  /* ── Hero bokeh particles (cinematic) ── */
+  var bokeh = document.getElementById("bokeh");
+  if (bokeh && !reduce) {
+    var colors = [
+      "rgba(255,184,102,0.85)", // warm gold
+      "rgba(124,92,255,0.8)",   // violet
+      "rgba(62,224,192,0.75)",  // cyan
+      "rgba(91,139,255,0.78)",  // blue
+      "rgba(255,255,255,0.55)"
+    ];
+    var n = window.innerWidth < 700 ? 16 : 30;
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < n; i++) {
+      var s = document.createElement("span");
+      var size = 4 + Math.random() * 16;
+      s.style.setProperty("--s", size.toFixed(1) + "px");
+      s.style.setProperty("--l", (Math.random() * 100).toFixed(2) + "%");
+      s.style.setProperty("--t", (Math.random() * 100).toFixed(2) + "%");
+      s.style.setProperty("--c", colors[(Math.random() * colors.length) | 0]);
+      s.style.setProperty("--o", (0.3 + Math.random() * 0.5).toFixed(2));
+      s.style.setProperty("--d", (8 + Math.random() * 10).toFixed(1) + "s");
+      s.style.setProperty("--delay", (-Math.random() * 10).toFixed(1) + "s");
+      frag.appendChild(s);
+    }
+    bokeh.appendChild(frag);
+  }
+
+  /* ── Reveal on scroll (staggered) ── */
   var revealEls = document.querySelectorAll(".reveal");
-  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+  if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           var el = entry.target;
-          var delay = el.dataset.delay || 0;
-          setTimeout(function () { el.classList.add("in"); }, delay);
+          setTimeout(function () { el.classList.add("in"); }, el.dataset.delay || 0);
           io.unobserve(el);
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-
     revealEls.forEach(function (el) {
-      var index = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
-      el.dataset.delay = Math.min(index, 6) * 70;
+      var sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.dataset.delay = Math.min(sib, 6) * 70;
       io.observe(el);
     });
   } else {
     revealEls.forEach(function (el) { el.classList.add("in"); });
   }
 
-  // Hero particles + parallax
-  function createHeroParticles() {
-    var heroLights = document.querySelector(".hero__lights");
-    if (!heroLights) return;
-
-    heroLights.innerHTML = '';
-    var count = 20; // more for premium feel
-    var colors = ['rgba(124,92,255,0.88)', 'rgba(62,224,192,0.86)', 'rgba(255,142,62,0.78)'];
-
-    for (var i = 0; i < count; i++) {
-      var dot = document.createElement("span");
-      var x = Math.random() * 100; // vw
-      var y = Math.random() * 100; // vh
-      var size = 6 + Math.random() * 28;
-      var color = colors[i % colors.length];
-      dot.style.setProperty("--x", x + "vw");
-      dot.style.setProperty("--y", y + "vh");
-      dot.style.setProperty("--size", size + "px");
-      dot.style.background = color;
-      dot.dataset.ox = x;
-      dot.dataset.oy = y;
-      heroLights.appendChild(dot);
-    }
-
-    // lightweight animation loop for drifting particles
-    if (!prefersReducedMotion) {
-      var t = 0;
-      function animate() {
-        t += 0.008;
-        heroLights.querySelectorAll('span').forEach(function (el, idx) {
-          var ox = parseFloat(el.dataset.ox);
-          var oy = parseFloat(el.dataset.oy);
-          var nx = ox + Math.sin(t + idx) * 1.6;
-          var ny = oy + Math.cos(t * 0.8 + idx) * 1.2;
-          el.style.setProperty('--x', nx + 'vw');
-          el.style.setProperty('--y', ny + 'vh');
-          var s = Math.max(6, parseFloat(el.style.getPropertyValue('--size')) || 10) * (1 + Math.sin(t + idx) * 0.04);
-          el.style.width = s + 'px';
-          el.style.height = s + 'px';
-        });
-        requestAnimationFrame(animate);
-      }
-      requestAnimationFrame(animate);
+  /* ── Animated stat counters ── */
+  var counters = document.querySelectorAll("[data-count]");
+  var runCount = function (el) {
+    var target = parseInt(el.dataset.count, 10);
+    var suffix = el.dataset.suffix || "";
+    if (reduce) { el.textContent = target + suffix; return; }
+    var start = null, dur = 1400;
+    var step = function (ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  if (counters.length) {
+    if ("IntersectionObserver" in window) {
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { runCount(e.target); cio.unobserve(e.target); } });
+      }, { threshold: 0.6 });
+      counters.forEach(function (c) { cio.observe(c); });
+    } else {
+      counters.forEach(runCount);
     }
   }
 
-  createHeroParticles();
-
-  // Mouse parallax for hero (combined with scroll offset)
-  (function heroParallax() {
-    var hero = document.querySelector('.hero');
-    var heroInner = document.querySelector('.hero__inner');
-    if (!hero || !heroInner || prefersReducedMotion) return;
-
-    var lx = 0, ly = 0; // lerped values
-    var tx = 0, ty = 0;
-    var rafId = null;
-
-    function onMove(e) {
-      var r = hero.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width; // 0..1
-      var py = (e.clientY - r.top) / r.height; // 0..1
-      tx = (px - 0.5) * 28; // px
-      ty = (py - 0.5) * -28;
-      if (!rafId) loop();
-    }
-
-    function loop() {
-      rafId = requestAnimationFrame(loop);
-      lx += (tx - lx) * 0.08;
-      ly += (ty - ly) * 0.08;
-      var scrollOffset = parseFloat(heroInner.dataset.scrollOffset || 0);
-      heroInner.style.transform = 'translate3d(' + (lx * 0.6).toFixed(2) + 'px, ' + (ly * 0.6 + scrollOffset).toFixed(2) + 'px, 0)';
-      // subtle parallax on background via CSS variables (if used in stylesheet)
-      hero.style.setProperty('--bg-x', (lx * 0.03) + 'px');
-      hero.style.setProperty('--bg-y', (ly * 0.02) + 'px');
-    }
-
-    hero.addEventListener('mousemove', onMove, { passive: true });
-    hero.addEventListener('mouseleave', function () { tx = 0; ty = 0; }, { passive: true });
-  })();
-
-  // Parallax attribute for any element: data-parallax="0.2"
-  (function initParallaxAttrs() {
-    if (prefersReducedMotion) return;
-    var els = document.querySelectorAll('[data-parallax]');
-    function update() {
-      var sc = window.scrollY;
-      els.forEach(function (el) {
-        var factor = parseFloat(el.dataset.parallax) || 0.15;
-        el.style.transform = 'translateY(' + (sc * factor) + 'px)';
+  /* ── Scrollspy (active nav link) ── */
+  var navLinkEls = Array.prototype.slice.call(document.querySelectorAll(".nav__links a"));
+  var sections = navLinkEls
+    .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+    .filter(Boolean);
+  if (sections.length && "IntersectionObserver" in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var id = e.target.id;
+          navLinkEls.forEach(function (a) {
+            a.classList.toggle("is-active", a.getAttribute("href") === "#" + id);
+          });
+        }
       });
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  })();
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
 
-  // smooth anchor scrolling enhancement (respect reduced motion)
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var href = a.getAttribute('href');
-      if (href === '#' || href === '') return;
-      var target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      if (prefersReducedMotion) {
-        target.scrollIntoView();
-      } else {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  /* ── Portfolio filter ── */
+  var filters = document.querySelectorAll(".filter");
+  var items = document.querySelectorAll("#workGrid .work__item");
+  filters.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      filters.forEach(function (b) { b.classList.remove("is-active"); b.setAttribute("aria-selected", "false"); });
+      btn.classList.add("is-active"); btn.setAttribute("aria-selected", "true");
+      var f = btn.dataset.filter;
+      items.forEach(function (item) {
+        var show = f === "all" || item.dataset.cat === f;
+        item.classList.toggle("is-hidden", !show);
+      });
+    });
+  });
+
+  /* ── Prefill contact form intent from CTA buttons ── */
+  var serviceSelect = document.getElementById("cf-service");
+  var intentMap = {
+    project: "AI-проєкт", content: "AI-контент", site: "Сайт",
+    automation: "Автоматизація", studio: "AI-проєкт", premium: "Автоматизація", start: "AI-контент"
+  };
+  document.querySelectorAll("[data-intent]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var val = intentMap[el.dataset.intent];
+      if (serviceSelect && val) {
+        Array.prototype.forEach.call(serviceSelect.options, function (o) {
+          if (o.value === val) serviceSelect.value = val;
+        });
       }
     });
   });
 
+  /* ── Contact form → mailto (no backend, works on static hosting) ── */
+  var form = document.getElementById("contact-form");
+  var hint = document.getElementById("cf-hint");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      var service = form.service.value;
+      var message = form.message.value.trim();
+
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!name || !emailOk) {
+        hint.textContent = !name
+          ? "Будь ласка, вкажіть ваше ім'я."
+          : "Будь ласка, введіть коректний email.";
+        hint.style.color = "#ff8fa3";
+        (!name ? form.name : form.email).focus();
+        return;
+      }
+
+      var subject = "Заявка з сайту — " + service;
+      var body =
+        "Ім'я: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Напрям: " + service + "\n\n" +
+        "Деталі:\n" + (message || "—");
+      var url = "mailto:aicreatormk8@gmail.com?subject=" +
+        encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+      hint.textContent = "Відкриваємо ваш поштовий застосунок…";
+      hint.style.color = "";
+      window.location.href = url;
+    });
+  }
 })();
