@@ -297,6 +297,8 @@ img { max-width: 100%; display: block; }
   background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.28), transparent 58%), linear-gradient(140deg, var(--accent), #1a153a);
   overflow: hidden;
 }
+.work__item--photo { display: flex; }
+.work__media--photo { height: auto; flex: 1; width: 100%; min-height: 320px; background: url("https://d8j0ntlcm91z4.cloudfront.net/user_3CoDNZt3iODN1yFKEYOyElR7Vli/hf_20260624_154456_009cef7c-7d28-4384-b463-5d922395fcbf.png") center/cover no-repeat; }
 .work__media--2 { background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.26), transparent 58%), linear-gradient(140deg, var(--accent), #3a1530); }
 .work__media--3 { background: radial-gradient(circle at 50% 72%, rgba(255,255,255,0.24), transparent 58%), linear-gradient(140deg, var(--accent), #102a3a); }
 .work__media--4 { background: radial-gradient(circle at 28% 70%, rgba(255,255,255,0.24), transparent 58%), linear-gradient(140deg, var(--accent), #0f2e2a); }
