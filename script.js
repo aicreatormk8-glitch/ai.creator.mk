@@ -99,15 +99,22 @@
     /* Mouse parallax (depth) + click burst that briefly accelerates the particles */
     if (heroSectionEl) {
       var pmX = 0, pmY = 0, pcX = 0, pcY = 0;
-      var boost = 0;     /* click energy: 0 = calm slow drift, >0 = sped up */
-      var spd = 1;       /* current particle animation-speed multiplier */
+      var lastMX = null, lastMY = null;  /* last pointer position (px) */
+      var vel = 0;                       /* recent pointer movement speed */
+      var boost = 0;                     /* extra burst from a click */
+      var spd = 1;                       /* current particle animation-speed multiplier */
       heroSectionEl.addEventListener("mousemove", function (e) {
         var r = heroSectionEl.getBoundingClientRect();
         pmX = (e.clientX - r.left) / r.width  * 2 - 1;
         pmY = (e.clientY - r.top)  / r.height * 2 - 1;
+        if (lastMX !== null) {
+          var dx = e.clientX - lastMX, dy = e.clientY - lastMY;
+          vel += Math.sqrt(dx * dx + dy * dy);   /* faster movement → more energy */
+        }
+        lastMX = e.clientX; lastMY = e.clientY;
       });
-      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; });
-      /* Click anywhere on the hero → burst of speed, then it eases back to the calm drift */
+      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; lastMX = null; });
+      /* Click also gives an extra burst on top of movement */
       heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 0.8, 1.2); });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
@@ -119,13 +126,15 @@
         if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
         if (heroContentEl)  heroContentEl.style.transform   = "translate3d(" + ( x*7).toFixed(2)  + "px," + ( y*4).toFixed(2)  + "px,0)";
 
-        /* Baseline speed is 1 (always slow drift + twinkle); a click gives a clear but smooth bump (~3.5x), then decays */
-        var spdTarget = 1 + boost * 2.1;
+        /* Always calm drift at baseline; moving the mouse speeds particles up and makes them glow brighter */
+        var spdTarget = 1 + Math.min(vel * 0.08, 3.5) + boost * 2.1;
         spd += (spdTarget - spd) * 0.12;   /* smooth ramp */
-        boost *= 0.99;                      /* slow decay → acceleration stays visible, then fades to the calm drift */
+        vel *= 0.86;                        /* decay → slows back down when the mouse stops */
+        boost *= 0.99;
         var spdStr = spd.toFixed(3);
-        if (heroParticlesEl) heroParticlesEl.style.setProperty("--spd", spdStr);
-        if (bokeh)           bokeh.style.setProperty("--spd", spdStr);
+        var glow = (1 + (spd - 1) * 0.22).toFixed(3);   /* brighter shimmer while active */
+        if (heroParticlesEl) { heroParticlesEl.style.setProperty("--spd", spdStr); heroParticlesEl.style.filter = "brightness(" + glow + ")"; }
+        if (bokeh)           { bokeh.style.setProperty("--spd", spdStr); bokeh.style.filter = "brightness(" + glow + ")"; }
         requestAnimationFrame(parallaxLoop);
       })();
     }
