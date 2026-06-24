@@ -96,23 +96,19 @@
       heroParticlesEl.appendChild(pFrag);
     }
 
-    /* Mouse parallax + 5D depth: particles speed up with pointer movement, ease back when it stops */
+    /* Mouse parallax (depth) + click burst that briefly accelerates the particles */
     if (heroSectionEl) {
       var pmX = 0, pmY = 0, pcX = 0, pcY = 0;
-      var lastMX = null, lastMY = null;   /* last pointer position (px) */
-      var vel = 0;                        /* accumulated recent pointer speed */
-      var spd = 1;                        /* current particle animation-speed multiplier */
+      var boost = 0;     /* click energy: 0 = calm slow drift, >0 = sped up */
+      var spd = 1;       /* current particle animation-speed multiplier */
       heroSectionEl.addEventListener("mousemove", function (e) {
         var r = heroSectionEl.getBoundingClientRect();
         pmX = (e.clientX - r.left) / r.width  * 2 - 1;
         pmY = (e.clientY - r.top)  / r.height * 2 - 1;
-        if (lastMX !== null) {
-          var dx = e.clientX - lastMX, dy = e.clientY - lastMY;
-          vel += Math.sqrt(dx * dx + dy * dy);
-        }
-        lastMX = e.clientX; lastMY = e.clientY;
       });
-      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; lastMX = null; });
+      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; });
+      /* Click anywhere on the hero → burst of speed, then it eases back to the calm drift */
+      heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 1, 1.4); });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
         pcY += (pmY - pcY) * 0.055;
@@ -123,10 +119,10 @@
         if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
         if (heroContentEl)  heroContentEl.style.transform   = "translate3d(" + ( x*7).toFixed(2)  + "px," + ( y*4).toFixed(2)  + "px,0)";
 
-        /* Faster pointer → higher target speed (up to ~5x); eased so it ramps up and slows down smoothly */
-        var spdTarget = 1 + Math.min(vel * 0.09, 4);
-        spd += (spdTarget - spd) * 0.10;   /* smooth approach */
-        vel *= 0.80;                        /* decay → when the mouse stops, everything slows back to rest */
+        /* Baseline speed is 1 (always slow drift + twinkle); a click ramps it up to ~5x, then decays */
+        var spdTarget = 1 + boost * 3.5;
+        spd += (spdTarget - spd) * 0.12;   /* smooth ramp */
+        boost *= 0.975;                     /* slow decay → acceleration fades back to the calm drift */
         var spdStr = spd.toFixed(3);
         if (heroParticlesEl) heroParticlesEl.style.setProperty("--spd", spdStr);
         if (bokeh)           bokeh.style.setProperty("--spd", spdStr);
