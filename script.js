@@ -156,6 +156,15 @@
     revealEls.forEach(function (el) { el.classList.add("in"); });
   }
 
+  /* ── Weekly auto-increment stats (+2 per week from base date) ── */
+  document.querySelectorAll("[data-weekly-inc]").forEach(function (el) {
+    var base    = parseInt(el.dataset.count, 10) || 0;
+    var inc     = parseInt(el.dataset.weeklyInc, 10) || 2;
+    var origin  = new Date(el.dataset.baseDate || "2026-06-24");
+    var weeks   = Math.max(0, Math.floor((Date.now() - origin.getTime()) / 604800000));
+    el.dataset.count = base + weeks * inc;
+  });
+
   /* ── Animated stat counters ── */
   var counters = document.querySelectorAll("[data-count]");
   var runCount = function (el) {
