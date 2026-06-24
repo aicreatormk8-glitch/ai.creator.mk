@@ -298,7 +298,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
 }
 .work__item--photo { display: flex; }
-.work__item--video { display: flex; flex-direction: column; }
+.work__item--video { display: flex; flex-direction: column; height: 100%; }
 .work__media--photo {
   height: auto; flex: 1; width: 100%; min-height: 320px; position: relative;
   background: url("https://d8j0ntlcm91z4.cloudfront.net/user_3CoDNZt3iODN1yFKEYOyElR7Vli/hf_20260624_175144_25d7d17d-e7e4-4043-8b79-60dccb120289.png") center/cover no-repeat;
@@ -311,7 +311,7 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 .work__media--video {
-  flex: 1; width: 100%; min-height: 320px; position: relative; overflow: hidden;
+  display: block; height: auto; flex: 1; width: 100%; min-height: 320px; position: relative; overflow: hidden;
 }
 .work__media--video::after {
   content: "AI-video";
