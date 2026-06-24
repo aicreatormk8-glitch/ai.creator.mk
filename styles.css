@@ -306,7 +306,7 @@ img { max-width: 100%; display: block; }
   content: "AI-photo";
   position: absolute; top: 1rem; right: 1rem;
   font-family: "Sora"; font-size: 22px; font-weight: 600; letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.85);
   pointer-events: none;
 }
 .work__media--2 { background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.26), transparent 58%), linear-gradient(140deg, var(--accent), #3a1530); }
