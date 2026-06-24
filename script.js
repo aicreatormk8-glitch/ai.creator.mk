@@ -386,8 +386,20 @@
 
   /* ── Gallery lightbox ── */
   var galleryPhotos = [
-    "https://d8j0ntlcm91z4.cloudfront.net/user_3CoDNZt3iODN1yFKEYOyElR7Vli/hf_20260624_175144_25d7d17d-e7e4-4043-8b79-60dccb120289.png"
-    // add more photo URLs here
+    "https://d8j0ntlcm91z4.cloudfront.net/user_3CoDNZt3iODN1yFKEYOyElR7Vli/hf_20260624_175144_25d7d17d-e7e4-4043-8b79-60dccb120289.png",
+    "portfolio-prada-jacket.jpg",
+    "portfolio-chanel-serum.jpg",
+    "portfolio-prada-bag.jpg",
+    "portfolio-luxury-interior.jpg",
+    "portfolio-modern-house.jpg",
+    "portfolio-warrior.jpg",
+    "portfolio-mouse.jpg",
+    "portfolio-tree-moon.jpg",
+    "portfolio-green-eyes.jpg",
+    "portfolio-glamour.jpg",
+    "portfolio-figurine.jpg",
+    "portfolio-composite.jpg",
+    "portfolio-nike.jpg"
   ];
 
   var videoGallery = [
