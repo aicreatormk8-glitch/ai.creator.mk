@@ -147,8 +147,7 @@ img { max-width: 100%; display: block; }
   background: var(--grad-btn); color: #fff; font-size: 1.02rem; font-weight: 800;
   box-shadow: 0 12px 30px -12px rgba(124, 92, 255, 0.9);
 }
-.nav__brand-text { display: flex; flex-direction: column; line-height: 1.05; font-size: 0.95rem; color: var(--text); font-family: "Sora", sans-serif; font-weight: 600; }
-.nav__brand-sub { font-size: 0.62rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--violet); font-weight: 600; }
+.nav__brand-text { font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff; font-family: "Sora", sans-serif; font-weight: 700; white-space: nowrap; }
 .nav__links { display: flex; align-items: center; gap: 1.9rem; }
 .nav__links a { position: relative; color: var(--muted); font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
 .nav__links a:hover, .nav__links a.is-active { color: #fff; }
