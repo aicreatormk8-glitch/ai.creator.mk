@@ -176,36 +176,17 @@ img { max-width: 100%; display: block; }
   padding: 7rem clamp(1.25rem, 5vw, 4rem) clamp(2.5rem, 5vw, 4rem);
   overflow: hidden; isolation: isolate;
 }
-/* Blurred, zoomed copy fills the whole screen behind the sharp photo (no empty bars, sense of depth) */
-.hero__backdrop {
-  position: absolute; inset: 0; z-index: -4;
-  background-image: url("hero.jpg");
-  background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;
-  transform: scale(1.18); filter: blur(34px) saturate(1.15) brightness(0.92);
-  will-change: transform;
-}
-/* Sharp photo, full subjects visible at full height (contain), centered */
 .hero__bg {
   position: absolute; inset: 0; z-index: -3;
   background-image: url("hero.jpg");
-  background-size: contain; background-position: 50% 50%; background-repeat: no-repeat;
+  background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;
   transform: scale(1.0); will-change: transform;
 }
-/* Light scrim — keeps brightness close to the original photo, only enough for text legibility */
 .hero__scrim {
   position: absolute; inset: 0; z-index: -2; pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(6,6,12,0.30) 0%, rgba(6,6,12,0.0) 22%, rgba(6,6,12,0.0) 58%, rgba(6,6,12,0.45) 84%, rgba(6,6,12,0.82) 100%),
-    linear-gradient(90deg, rgba(6,6,12,0.50) 0%, rgba(6,6,12,0.12) 40%, rgba(6,6,12,0.0) 65%);
-}
-/* On portrait screens (phones) the photo already fills the screen full-height — use cover, drop the blurred fill */
-@media (max-aspect-ratio: 4/5) {
-  .hero__bg { background-size: cover; }
-  .hero__backdrop { display: none; }
-  .hero__scrim {
-    background:
-      linear-gradient(180deg, rgba(6,6,12,0.32) 0%, rgba(6,6,12,0.0) 26%, rgba(6,6,12,0.0) 54%, rgba(6,6,12,0.55) 82%, rgba(6,6,12,0.9) 100%);
-  }
+    linear-gradient(180deg, rgba(6,6,12,0.40) 0%, rgba(6,6,12,0.10) 30%, rgba(6,6,12,0.05) 50%, rgba(6,6,12,0.50) 80%, rgba(6,6,12,0.95) 100%),
+    linear-gradient(90deg, rgba(6,6,12,0.55) 0%, rgba(6,6,12,0.15) 45%, rgba(6,6,12,0.0) 70%);
 }
 .hero__bokeh { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; will-change: transform; }
 .hero__bokeh span {
@@ -213,7 +194,6 @@ img { max-width: 100%; display: block; }
   width: var(--s); height: var(--s); left: var(--l); top: var(--t);
   background: var(--c); opacity: var(--o);
   animation: bokehFloat var(--d) ease-in-out var(--delay) infinite alternate;
-  animation-duration: calc(var(--d) / var(--spd, 1));
   box-shadow: 0 0 calc(var(--s) * 2.5) var(--c), 0 0 calc(var(--s) * 5) var(--c);
 }
 @keyframes bokehFloat {
@@ -248,7 +228,6 @@ img { max-width: 100%; display: block; }
   width: var(--s); height: var(--s); left: var(--l); top: var(--t);
   background: var(--c); opacity: 0;
   animation: pDrift var(--d) var(--ease, ease-in-out) var(--delay) infinite alternate;
-  animation-duration: calc(var(--d) / var(--spd, 1));
   box-shadow: 0 0 calc(var(--s) * 3.5) var(--c), 0 0 calc(var(--s) * 8) var(--c);
 }
 @keyframes pDrift {
@@ -257,7 +236,7 @@ img { max-width: 100%; display: block; }
   82%  { opacity: var(--o); }
   100% { transform: translate(var(--dx,28px), var(--dy,-36px)) scale(1.4); opacity: 0; }
 }
-.hero__letterbox { position: absolute; left: 0; right: 0; height: 5vh; max-height: 44px; z-index: -1; pointer-events: none; background: #06060c; }
+.hero__letterbox { position: absolute; left: 0; right: 0; height: 8vh; max-height: 70px; z-index: -1; pointer-events: none; background: #06060c; }
 .hero__letterbox--top { top: 0; -webkit-mask: linear-gradient(#000, transparent); mask: linear-gradient(#000, transparent); }
 .hero__letterbox--bottom { bottom: 0; -webkit-mask: linear-gradient(transparent, #000); mask: linear-gradient(transparent, #000); }
 
@@ -617,7 +596,6 @@ img { max-width: 100%; display: block; }
   .hero__bokeh span, .hero__particles span, .hero__ambient::before, .hero__ambient::after,
   .hero__scroll .ic, .pill__dot, .marquee__track { animation: none; }
   .hero__bg, .hero__bokeh, .hero__particles, .hero__ambient, .hero__content { transform: none !important; }
-  .hero__backdrop { transform: scale(1.18) !important; }
   .marquee__track { transform: none; }
   * { scroll-behavior: auto; }
 }

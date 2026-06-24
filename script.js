@@ -39,7 +39,6 @@
   var bokeh           = document.getElementById("bokeh");
   var heroParticlesEl = document.getElementById("heroParticles");
   var heroBgEl        = document.getElementById("heroBg");
-  var heroBackdropEl  = document.getElementById("heroBackdrop");
   var heroAmbientEl   = document.getElementById("heroAmbient");
   var heroContentEl   = document.getElementById("heroContent");
   var heroSectionEl   = document.querySelector(".hero");
@@ -94,43 +93,24 @@
       heroParticlesEl.appendChild(pFrag);
     }
 
-    /* Mouse parallax + particle speed-up on movement */
+    /* Mouse parallax */
     if (heroSectionEl) {
       var pmX = 0, pmY = 0, pcX = 0, pcY = 0;
-      var lastMX = null, lastMY = null;   /* last pointer px position */
-      var vel = 0;                        /* recent pointer speed (px/frame-ish) */
-      var spd = 1, spdTarget = 1;         /* particle animation speed multiplier */
       heroSectionEl.addEventListener("mousemove", function (e) {
         var r = heroSectionEl.getBoundingClientRect();
         pmX = (e.clientX - r.left) / r.width  * 2 - 1;
         pmY = (e.clientY - r.top)  / r.height * 2 - 1;
-        if (lastMX !== null) {
-          var dx = e.clientX - lastMX, dy = e.clientY - lastMY;
-          vel += Math.sqrt(dx * dx + dy * dy);   /* accumulate distance moved */
-        }
-        lastMX = e.clientX; lastMY = e.clientY;
       });
-      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; lastMX = null; });
+      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
         pcY += (pmY - pcY) * 0.055;
         var x = pcX, y = pcY;
-        /* Sharp photo stays full-height (no zoom), drifts a touch for depth */
-        if (heroBgEl)       heroBgEl.style.transform       = "translate3d(" + (-x*6).toFixed(2)  + "px," + (-y*4).toFixed(2)  + "px,0)";
-        /* Blurred backdrop moves more, opposite feel → parallax depth */
-        if (heroBackdropEl) heroBackdropEl.style.transform = "scale(1.18) translate3d(" + (x*14).toFixed(2) + "px," + (y*10).toFixed(2) + "px,0)";
+        if (heroBgEl)       heroBgEl.style.transform       = "scale(1.04) translate3d(" + (-x*10).toFixed(2) + "px," + (-y*7).toFixed(2)  + "px,0)";
         if (heroAmbientEl)  heroAmbientEl.style.transform   = "translate3d(" + (-x*22).toFixed(2) + "px," + (-y*16).toFixed(2) + "px,0)";
         if (bokeh)          bokeh.style.transform           = "translate3d(" + (-x*30).toFixed(2) + "px," + (-y*22).toFixed(2) + "px,0)";
         if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
         if (heroContentEl)  heroContentEl.style.transform   = "translate3d(" + ( x*7).toFixed(2)  + "px," + ( y*4).toFixed(2)  + "px,0)";
-
-        /* Particle acceleration: faster pointer → particles shimmer/drift faster, eased back to rest */
-        spdTarget = 1 + Math.min(vel * 0.10, 3.2);   /* up to ~4.2x */
-        spd += (spdTarget - spd) * 0.12;
-        vel *= 0.82;                                  /* decay so it settles when the mouse stops */
-        var spdStr = spd.toFixed(3);
-        if (heroParticlesEl) heroParticlesEl.style.setProperty("--spd", spdStr);
-        if (bokeh)           bokeh.style.setProperty("--spd", spdStr);
         requestAnimationFrame(parallaxLoop);
       })();
     }
