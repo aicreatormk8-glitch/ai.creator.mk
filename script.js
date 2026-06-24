@@ -391,7 +391,7 @@
   ];
 
   var videoGallery = [
-    "https://d8j0ntlcm91z4.cloudfront.net/user_3CoDNZt3iODN1yFKEYOyElR7Vli/hf_20260513_201105_36b6019b4e7e488baaab3ade69b3eb84.mp4"
+    "ai-video-1.mp4"
     // add more video URLs here
   ];
 
