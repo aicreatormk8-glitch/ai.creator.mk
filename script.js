@@ -108,7 +108,7 @@
       });
       heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; });
       /* Click anywhere on the hero → burst of speed, then it eases back to the calm drift */
-      heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 1, 1.4); });
+      heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 0.6, 1); });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
         pcY += (pmY - pcY) * 0.055;
@@ -119,8 +119,8 @@
         if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
         if (heroContentEl)  heroContentEl.style.transform   = "translate3d(" + ( x*7).toFixed(2)  + "px," + ( y*4).toFixed(2)  + "px,0)";
 
-        /* Baseline speed is 1 (always slow drift + twinkle); a click ramps it up to ~5x, then decays */
-        var spdTarget = 1 + boost * 3.5;
+        /* Baseline speed is 1 (always slow drift + twinkle); a click gives a gentle bump (~2x), then decays */
+        var spdTarget = 1 + boost * 1.1;
         spd += (spdTarget - spd) * 0.12;   /* smooth ramp */
         boost *= 0.975;                     /* slow decay → acceleration fades back to the calm drift */
         var spdStr = spd.toFixed(3);
