@@ -424,7 +424,12 @@
 
   var video4Gallery = [
     "ai-video-3.mp4",
-    "ai-video-3b.mp4"
+    "ai-video-3b.mp4",
+    "ai-video-4b.mp4",
+    "ai-video-4c.mp4",
+    "ai-video-4d.mp4",
+    "ai-video-4e.mp4",
+    "ai-video-4f.mp4"
   ];
 
   var lightbox    = document.getElementById("lightbox");
