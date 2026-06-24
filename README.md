@@ -1,42 +1,72 @@
-# MK — AI Creator · Portfolio
+# AI Creator MK — Luxury AI Education Platform
 
-Сучасний односторінковий сайт-портфоліо для **MK**, AI Creator.
-Темна тема, фіолетове сяйво-арка, скляні картки та плавні scroll-анімації.
+Преміальна AI-освітня платформа на Next.js. Темний графітовий дизайн, бірюзовий
+акцент (custom Tiffany-style teal), glassmorphism, живі градієнти, parallax та
+м'які мікроанімації. Рівень Apple / Stripe / Vercel / Linear.
+
+## Стек
+
+- **Next.js 14** (App Router) + **React 18** + **TypeScript**
+- **Tailwind CSS** — дизайн-система Luxury AI
+- **Framer Motion** — анімації, parallax, scroll-reveal
+- **i18n** — UA / EN / RU (контекст + словники, з автодетектом мови)
+- SEO: metadata, OpenGraph, sitemap, robots, manifest
+- Статична генерація → Lighthouse 90+
 
 ## Структура
 
 ```
-index.html              # розмітка сторінки
-assets/css/styles.css   # стилі (дизайн-система на CSS-змінних)
-assets/js/script.js     # навбар, мобільне меню, reveal-анімації
+app/
+  layout.tsx        # шрифти, SEO-метадані, провайдери
+  page.tsx          # лендинг (12 секцій)
+  success/          # сторінка після оплати
+  dashboard/        # особистий кабінет (модулі, прогрес, пошук, профіль)
+  links/            # link-in-bio хаб
+  sitemap.ts robots.ts manifest.ts
+components/
+  Navbar, Footer, PaymentModal
+  ui/               # Icon, Reveal, AmbientBackground
+  sections/         # Hero, About, Audience, Skills, Program, Cases,
+                    # Pricing, Payment, Reviews, FAQ, Contacts
+lib/
+  i18n/             # словники UA/EN/RU + LanguageProvider
+  payments.ts       # методи оплати + гео-логіка (UA → локальні першими)
+  CheckoutContext   # стан оформлення замовлення
+  dashboardData.ts  # дані кабінету
+public/hero.jpg     # фон Hero (фото власниці бренду)
+legacy/             # попередній статичний прототип (архів)
 ```
 
-## Секції
+## Оплата
 
-- **Hero** — заголовок, CTA та анімована арка-сяйво
-- **Trust bar** — рейтинг та AI-інструменти
-- **Послуги** — 6 напрямків (генерація зображень, AI-відео, брендинг, контент, AI-агенти, промпт-інжиніринг)
-- **Чому я** — фіолетовий блок із кроками 01–04
-- **Роботи** — вибрані проєкти
-- **Відгуки** — соціальний доказ
-- **Контакти / CTA** — пошта та Telegram
+Універсальна система: автовизначення регіону (timezone + мова браузера).
 
-## Запуск локально
+- **Україна:** Monobank, Privat24, WayForPay/Fondy, Apple Pay, Google Pay, Visa/Mastercard
+- **Міжнародні:** Stripe, PayPal, Apple Pay, Google Pay, Visa/Mastercard
+- **Крипто:** USDT TRC20/ERC20, BTC, ETH (Coinbase Commerce / NowPayments)
 
-Це статичний сайт — жодних залежностей. Просто відкрий `index.html`
-або підніми локальний сервер:
+Для українських відвідувачів локальні методи показуються першими; для решти —
+Stripe/PayPal/international. Усі способи доступні вручну. Після оплати →
+`/success` → вхід у кабінет.
+
+> Методи оплати інтегровані на рівні UI. Для продакшену під'єднайте API-ключі
+> провайдерів (Stripe / WayForPay / NowPayments) у серверних роутах.
+
+## Розробка
 
 ```bash
-python3 -m http.server 8000
-# відкрий http://localhost:8000
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # продакшен-збірка
 ```
 
-## Деплой
+## Деплой на Vercel
 
-Готовий до GitHub Pages: Settings → Pages → Branch.
+Vercel автоматично визначає Next.js. Просто підключіть репозиторій —
+жодного додаткового конфігу не потрібно.
 
-## Кастомізація
+## Тарифи
 
-- Кольори та радіуси — у блоці `:root` у `styles.css`
-- Тексти, контакти й посилання — прямо в `index.html`
-- Пошта для звʼязку: `aicreatormk8@gmail.com`
+- **START** — основний курс
+- **PRO** — курс + матеріали + оновлення + підтримка (найпопулярніший)
+- **VIP** — усе + особистий супровід + розбір робіт
