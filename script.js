@@ -62,6 +62,25 @@
     bokeh.appendChild(frag);
   }
 
+  /* ── Portfolio video autoplay fix for iOS/Android ── */
+  var portfolioVideos = document.querySelectorAll(".work__video");
+  portfolioVideos.forEach(function (v) {
+    v.muted = true;
+    v.setAttribute("muted", "");
+    v.setAttribute("playsinline", "");
+    var tryPlay = function () { v.play().catch(function () {}); };
+    if ("IntersectionObserver" in window) {
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { tryPlay(); } else { v.pause(); }
+        });
+      }, { threshold: 0.25 });
+      vio.observe(v);
+    } else {
+      tryPlay();
+    }
+  });
+
   /* ── Reveal on scroll (staggered) ── */
   var revealEls = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && !reduce) {
