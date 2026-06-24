@@ -106,7 +106,7 @@
         pcX += (pmX - pcX) * 0.055;
         pcY += (pmY - pcY) * 0.055;
         var x = pcX, y = pcY;
-        if (heroBgEl)       heroBgEl.style.transform       = "scale(1.06) translate3d(" + (-x*10).toFixed(2) + "px," + (-y*7).toFixed(2)  + "px,0)";
+        if (heroBgEl)       heroBgEl.style.transform       = "scale(1.04) translate3d(" + (-x*10).toFixed(2) + "px," + (-y*7).toFixed(2)  + "px,0)";
         if (heroAmbientEl)  heroAmbientEl.style.transform   = "translate3d(" + (-x*22).toFixed(2) + "px," + (-y*16).toFixed(2) + "px,0)";
         if (bokeh)          bokeh.style.transform           = "translate3d(" + (-x*30).toFixed(2) + "px," + (-y*22).toFixed(2) + "px,0)";
         if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
