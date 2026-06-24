@@ -348,7 +348,7 @@ img { max-width: 100%; display: block; }
 .work__item--web { display: flex; flex-direction: column; height: 100%; }
 .work__media--web {
   display: block; height: auto; flex: 1; width: 100%; min-height: 320px; position: relative; overflow: hidden;
-  background: url("web-preview-1.png") center/cover no-repeat;
+  background: url("web-preview-1.png") top center/cover no-repeat;
 }
 .work__media--web::after {
   content: "Web Development";
