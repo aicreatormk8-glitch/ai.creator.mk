@@ -408,7 +408,10 @@
     "ai-video-2c.mp4",
     "ai-video-2d.mp4",
     "ai-video-2e.mp4",
-    "ai-video-2f.mp4"
+    "ai-video-2f.mp4",
+    "ai-video-2g.mp4",
+    "ai-video-2h.mp4",
+    "ai-video-2i.mp4"
   ];
 
   var video3Gallery = [
