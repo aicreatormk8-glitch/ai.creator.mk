@@ -344,8 +344,13 @@ img { max-width: 100%; display: block; }
   font-family: "Sora"; font-size: 16px; font-weight: 600; letter-spacing: 0.04em;
   color: rgba(255,255,255,0.85); pointer-events: none; z-index: 1;
 }
-#video4GalleryTrigger { cursor: pointer; grid-column: 1; }
-#webGalleryTrigger { cursor: pointer; grid-column: 3; }
+#video4GalleryTrigger { cursor: pointer; }
+.work__row-center {
+  display: flex; justify-content: center; gap: 1.2rem;
+}
+.work__row-center .work__item {
+  width: calc(33.33% - 0.6rem);
+}
 .work__item--web { display: flex; flex-direction: column; height: 100%; }
 .work__media--web {
   display: block; height: auto; flex: 1; width: 100%; min-height: 320px; position: relative; overflow: hidden;
