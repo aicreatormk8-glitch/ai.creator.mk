@@ -50,7 +50,7 @@
         "rgba(255,190,80,1)", "rgba(124,92,255,1)", "rgba(62,224,192,1)",
         "rgba(91,139,255,1)", "rgba(255,120,80,1)"
       ];
-      var nB = window.innerWidth < 700 ? 22 : 42;
+      var nB = window.innerWidth < 700 ? 32 : 62;
       var bFrag = document.createDocumentFragment();
       for (var bi = 0; bi < nB; bi++) {
         var bEl = document.createElement("span");
@@ -76,7 +76,7 @@
         "rgba(255,215,80,1)", "rgba(62,224,192,1)", "rgba(180,150,255,1)",
         "rgba(255,255,255,1)", "rgba(255,160,100,1)"
       ];
-      var nP = window.innerWidth < 700 ? 36 : 75;
+      var nP = window.innerWidth < 700 ? 55 : 120;
       var pFrag = document.createDocumentFragment();
       for (var pi = 0; pi < nP; pi++) {
         var pEl = document.createElement("span");
@@ -108,7 +108,7 @@
       });
       heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; });
       /* Click anywhere on the hero → burst of speed, then it eases back to the calm drift */
-      heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 0.6, 1); });
+      heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 0.8, 1.2); });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
         pcY += (pmY - pcY) * 0.055;
@@ -119,10 +119,10 @@
         if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
         if (heroContentEl)  heroContentEl.style.transform   = "translate3d(" + ( x*7).toFixed(2)  + "px," + ( y*4).toFixed(2)  + "px,0)";
 
-        /* Baseline speed is 1 (always slow drift + twinkle); a click gives a gentle bump (~2x), then decays */
-        var spdTarget = 1 + boost * 1.1;
+        /* Baseline speed is 1 (always slow drift + twinkle); a click gives a clear but smooth bump (~3.5x), then decays */
+        var spdTarget = 1 + boost * 2.1;
         spd += (spdTarget - spd) * 0.12;   /* smooth ramp */
-        boost *= 0.975;                     /* slow decay → acceleration fades back to the calm drift */
+        boost *= 0.99;                      /* slow decay → acceleration stays visible, then fades to the calm drift */
         var spdStr = spd.toFixed(3);
         if (heroParticlesEl) heroParticlesEl.style.setProperty("--spd", spdStr);
         if (bokeh)           bokeh.style.setProperty("--spd", spdStr);
