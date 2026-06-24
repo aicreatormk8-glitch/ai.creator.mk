@@ -486,6 +486,18 @@
     });
   }
 
+  var webLinks = [
+    { url: "https://ai-creator-mk.vercel.app", label: "AI Creator Studio" }
+    // add more sites here
+  ];
+  var webTrigger = document.getElementById("webGalleryTrigger");
+  if (webTrigger) {
+    webTrigger.addEventListener("click", function () { window.open(webLinks[0].url, "_blank", "noopener"); });
+    webTrigger.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); window.open(webLinks[0].url, "_blank", "noopener"); }
+    });
+  }
+
   if (lbClose)    lbClose.addEventListener("click", lbCloseF);
   if (lbBackdrop) lbBackdrop.addEventListener("click", lbCloseF);
   if (lbPrev)     lbPrev.addEventListener("click", function () { lbShow(lbIndex - 1); });
