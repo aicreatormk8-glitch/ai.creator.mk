@@ -383,4 +383,63 @@
   var saved = "uk";
   try { saved = localStorage.getItem("mk_lang") || "uk"; } catch (e) {}
   applyLang(saved);
+
+  /* ── Gallery lightbox ── */
+  var galleryPhotos = [
+    "https://d8j0ntlcm91z4.cloudfront.net/user_3CoDNZt3iODN1yFKEYOyElR7Vli/hf_20260624_175144_25d7d17d-e7e4-4043-8b79-60dccb120289.png"
+    // add more photo URLs here
+  ];
+
+  var lightbox   = document.getElementById("lightbox");
+  var lbImg      = document.getElementById("lbImg");
+  var lbCounter  = document.getElementById("lbCounter");
+  var lbPrev     = document.getElementById("lbPrev");
+  var lbNext     = document.getElementById("lbNext");
+  var lbClose    = document.getElementById("lbClose");
+  var lbBackdrop = document.getElementById("lbBackdrop");
+  var lbIndex    = 0;
+
+  function lbShow(idx) {
+    lbIndex = Math.max(0, Math.min(idx, galleryPhotos.length - 1));
+    lbImg.src = galleryPhotos[lbIndex];
+    lbCounter.textContent = (lbIndex + 1) + " / " + galleryPhotos.length;
+    lbPrev.disabled = lbIndex === 0;
+    lbNext.disabled = lbIndex === galleryPhotos.length - 1;
+  }
+
+  function lbOpen() {
+    lightbox.removeAttribute("hidden");
+    document.body.style.overflow = "hidden";
+    lbShow(0);
+    lbClose.focus();
+  }
+
+  function lbCloseF() {
+    lightbox.setAttribute("hidden", "");
+    document.body.style.overflow = "";
+    var trigger = document.getElementById("galleryTrigger");
+    if (trigger) trigger.focus();
+  }
+
+  var trigger = document.getElementById("galleryTrigger");
+  if (trigger) {
+    trigger.addEventListener("click", lbOpen);
+    trigger.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); lbOpen(); }
+    });
+  }
+
+  if (lbClose)    lbClose.addEventListener("click", lbCloseF);
+  if (lbBackdrop) lbBackdrop.addEventListener("click", lbCloseF);
+  if (lbPrev)     lbPrev.addEventListener("click", function () { lbShow(lbIndex - 1); });
+  if (lbNext)     lbNext.addEventListener("click", function () { lbShow(lbIndex + 1); });
+
+  document.addEventListener("keydown", function (e) {
+    if (lightbox && !lightbox.hasAttribute("hidden")) {
+      if (e.key === "Escape")     lbCloseF();
+      if (e.key === "ArrowLeft")  lbShow(lbIndex - 1);
+      if (e.key === "ArrowRight") lbShow(lbIndex + 1);
+    }
+  });
+
 })();
