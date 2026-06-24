@@ -148,7 +148,7 @@
   var serviceSelect = document.getElementById("cf-service");
   var intentMap = {
     project: "AI-проєкт", content: "AI-контент", site: "Сайт",
-    automation: "Автоматизація", studio: "AI-проєкт", premium: "Автоматизація", start: "AI-контент"
+    automation: "Автоматизація", branding: "AI-проєкт", studio: "AI-проєкт", premium: "Автоматизація", start: "AI-контент"
   };
   document.querySelectorAll("[data-intent]").forEach(function (el) {
     el.addEventListener("click", function () {
@@ -213,6 +213,8 @@
       "p3.title": "AI-автоматизация",
       "p3.desc": "Внедряем AI-решения, которые экономят время и масштабируют бизнес.",
       "p3.i1": "AI-ассистенты", "p3.i2": "Автоматизация процессов", "p3.i3": "CRM и интеграции", "p3.i4": "Telegram-боты", "p3.i5": "Деплой и поддержка", "p3.cta": "Заказать автоматизацию",
+      "p4.title": "Брендинг и дизайн", "p4.desc": "Создаём сильную визуальную идентичность, которая выделяет бренд и запоминается.",
+      "p4.i1": "Айдентика", "p4.i2": "Логотипы", "p4.i3": "Презентации", "p4.i4": "Бренд-киты", "p4.i5": "Дизайн соцсетей", "p4.cta": "Создать айдентику",
       "work.eyebrow": "Портфолио",
       "work.h2": "Результаты, которые говорят громче слов",
       "work.lead": "От AI-контента до комплексных цифровых решений — каждый проект демонстрирует подход к качеству, деталям и современным технологиям.",
@@ -275,6 +277,8 @@
       "p3.title": "AI automation",
       "p3.desc": "We implement AI solutions that save time and scale your business.",
       "p3.i1": "AI assistants", "p3.i2": "Process automation", "p3.i3": "CRM & integrations", "p3.i4": "Telegram bots", "p3.i5": "Deployment & support", "p3.cta": "Order automation",
+      "p4.title": "Branding & design", "p4.desc": "We create a strong visual identity that sets your brand apart and stays in memory.",
+      "p4.i1": "Brand identity", "p4.i2": "Logos", "p4.i3": "Presentations", "p4.i4": "Brand kits", "p4.i5": "Social media design", "p4.cta": "Create identity",
       "work.eyebrow": "Portfolio",
       "work.h2": "Results that speak louder than words",
       "work.lead": "From AI content to complex digital solutions — every project demonstrates an approach to quality, detail and modern technology.",
