@@ -2,22 +2,27 @@
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
+export interface CheckoutItem {
+  name: string;
+  price: string;
+}
+
 interface CheckoutContextValue {
-  planId: string | null;
-  open: (planId: string) => void;
+  item: CheckoutItem | null;
+  open: (item: CheckoutItem) => void;
   close: () => void;
 }
 
 const CheckoutContext = createContext<CheckoutContextValue | null>(null);
 
 export function CheckoutProvider({ children }: { children: ReactNode }) {
-  const [planId, setPlanId] = useState<string | null>(null);
+  const [item, setItem] = useState<CheckoutItem | null>(null);
   return (
     <CheckoutContext.Provider
       value={{
-        planId,
-        open: (id) => setPlanId(id),
-        close: () => setPlanId(null),
+        item,
+        open: (i) => setItem(i),
+        close: () => setItem(null),
       }}
     >
       {children}

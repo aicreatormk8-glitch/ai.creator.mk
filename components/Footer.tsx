@@ -8,10 +8,11 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   const nav = [
-    { href: '#program', label: t.nav.program },
-    { href: '#cases', label: t.nav.cases },
-    { href: '#pricing', label: t.nav.pricing },
-    { href: '#faq', label: t.nav.faq },
+    { href: '/#program', label: t.nav.program },
+    { href: '/#courses', label: t.courses.tag },
+    { href: '/#cases', label: t.nav.cases },
+    { href: '/#pricing', label: t.nav.pricing },
+    { href: '/#faq', label: t.nav.faq },
   ];
 
   return (

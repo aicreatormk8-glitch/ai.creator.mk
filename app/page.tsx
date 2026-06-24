@@ -11,6 +11,7 @@ import { Audience } from '@/components/sections/Audience';
 import { Skills } from '@/components/sections/Skills';
 import { Program } from '@/components/sections/Program';
 import { Cases } from '@/components/sections/Cases';
+import { Courses } from '@/components/sections/Courses';
 import { Pricing } from '@/components/sections/Pricing';
 import { Payment } from '@/components/sections/Payment';
 import { Reviews } from '@/components/sections/Reviews';
@@ -29,6 +30,7 @@ export default function Home() {
         <Skills />
         <Program />
         <Cases />
+        <Courses />
         <Pricing />
         <Payment />
         <Reviews />

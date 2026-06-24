@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
@@ -15,21 +15,21 @@ import { Icon, type IconName } from './ui/Icon';
 
 export function PaymentModal() {
   const { t } = useLanguage();
-  const { planId, close } = useCheckout();
+  const { item, close } = useCheckout();
   const router = useRouter();
   const [region, setRegion] = useState<Region>('intl');
   const [selected, setSelected] = useState<string | null>(null);
 
   useEffect(() => {
-    if (planId) {
+    if (item) {
       setRegion(detectRegion());
       setSelected(null);
     }
-  }, [planId]);
+  }, [item]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close();
-    if (planId) {
+    if (item) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', onKey);
     }
@@ -37,12 +37,7 @@ export function PaymentModal() {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
     };
-  }, [planId, close]);
-
-  const plan = useMemo(
-    () => t.pricing.plans.find((p) => p.id === planId),
-    [planId, t.pricing.plans]
-  );
+  }, [item, close]);
 
   const groupTitles: Record<'local' | 'intl' | 'crypto', string> = {
     local: t.payment.localTitle,
@@ -52,12 +47,14 @@ export function PaymentModal() {
 
   const handlePay = () => {
     close();
-    router.push(`/success?plan=${planId}&method=${selected}`);
+    router.push(
+      `/success?item=${encodeURIComponent(item?.name ?? '')}&method=${selected}`
+    );
   };
 
   return (
     <AnimatePresence>
-      {planId && plan && (
+      {item && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -83,11 +80,11 @@ export function PaymentModal() {
 
             <span className="tag-pill">{t.payment.tag}</span>
             <h3 className="mt-4 font-display text-2xl font-bold text-white">
-              {t.payment.selectPlan}: {plan.name}
+              {t.payment.selectPlan}: {item.name}
             </h3>
             <div className="mt-1 flex items-baseline gap-2">
               <span className="font-display text-3xl font-extrabold text-gradient-teal">
-                {plan.price}
+                {item.price}
               </span>
             </div>
 
@@ -129,7 +126,7 @@ export function PaymentModal() {
               disabled={!selected}
               className="btn-primary mt-7 w-full disabled:cursor-not-allowed disabled:opacity-40"
             >
-              {t.payment.payNow} {plan.price}
+              {t.payment.payNow} {item.price}
               <Icon name="arrow" size={16} />
             </button>
 

@@ -78,7 +78,13 @@ export function Payment() {
 
       <Reveal>
         <div className="mt-10 flex flex-col items-center gap-4">
-          <button onClick={() => open('pro')} className="btn-primary text-base">
+          <button
+            onClick={() => {
+              const pro = t.pricing.plans.find((p) => p.id === 'pro');
+              open({ name: pro?.name ?? 'PRO', price: pro?.price ?? '' });
+            }}
+            className="btn-primary text-base"
+          >
             {t.payment.payNow}
             <Icon name="arrow" size={16} />
           </button>

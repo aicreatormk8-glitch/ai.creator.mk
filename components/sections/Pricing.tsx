@@ -64,7 +64,7 @@ export function Pricing() {
                 </ul>
 
                 <button
-                  onClick={() => open(plan.id)}
+                  onClick={() => open({ name: plan.name, price: plan.price })}
                   className={`mt-8 w-full ${popular ? 'btn-primary' : 'btn-ghost'}`}
                 >
                   {plan.cta}

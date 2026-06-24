@@ -65,6 +65,20 @@ export interface Dictionary {
       cta: string;
     }[];
   };
+  courses: {
+    tag: string;
+    title: string;
+    subtitle: string;
+    detailsCta: string;
+    joinCta: string;
+    benefitsTitle: string;
+    bonusTag: string;
+    startLabel: string;
+    backToCourses: string;
+    timerTitle: string;
+    timer: { hours: string; minutes: string; seconds: string };
+    flags: { hit: string; new: string; club: string };
+  };
   payment: {
     tag: string;
     title: string;
@@ -261,6 +275,20 @@ const ua: Dictionary = {
         cta: 'Обрати VIP',
       },
     ],
+  },
+  courses: {
+    tag: 'Курси',
+    title: 'Усі курси',
+    subtitle: 'Обери напрям — від нейромереж з нуля до AI-фотосесій. Усі курси та проєкти в одному місці.',
+    detailsCta: 'Деталі про курс',
+    joinCta: 'Приєднатись',
+    benefitsTitle: 'Що ти отримаєш',
+    bonusTag: 'Бонус',
+    startLabel: 'Дата старту',
+    backToCourses: 'Усі курси',
+    timerTitle: 'Спеціальна ціна діє ще',
+    timer: { hours: 'Годин', minutes: 'Хвилин', seconds: 'Секунд' },
+    flags: { hit: 'Хіт продажів', new: 'Новинка', club: 'Закритий клуб' },
   },
   payment: {
     tag: 'Оплата',
@@ -473,6 +501,20 @@ const en: Dictionary = {
       },
     ],
   },
+  courses: {
+    tag: 'Courses',
+    title: 'All courses',
+    subtitle: 'Pick a direction — from neural networks from scratch to AI photoshoots. All courses and projects in one place.',
+    detailsCta: 'Course details',
+    joinCta: 'Join now',
+    benefitsTitle: 'What you get',
+    bonusTag: 'Bonus',
+    startLabel: 'Start date',
+    backToCourses: 'All courses',
+    timerTitle: 'Special price ends in',
+    timer: { hours: 'Hours', minutes: 'Minutes', seconds: 'Seconds' },
+    flags: { hit: 'Best seller', new: 'New', club: 'Private club' },
+  },
   payment: {
     tag: 'Payment',
     title: 'Convenient & secure payment',
@@ -683,6 +725,20 @@ const ru: Dictionary = {
         cta: 'Выбрать VIP',
       },
     ],
+  },
+  courses: {
+    tag: 'Курсы',
+    title: 'Все курсы',
+    subtitle: 'Выбери направление — от нейросетей с нуля до AI-фотосессий. Все курсы и проекты в одном месте.',
+    detailsCta: 'Детали о курсе',
+    joinCta: 'Присоединиться',
+    benefitsTitle: 'Что ты получишь',
+    bonusTag: 'Бонус',
+    startLabel: 'Дата старта',
+    backToCourses: 'Все курсы',
+    timerTitle: 'Специальная цена действует ещё',
+    timer: { hours: 'Часов', minutes: 'Минут', seconds: 'Секунд' },
+    flags: { hit: 'Хит продаж', new: 'Новинка', club: 'Закрытый клуб' },
   },
   payment: {
     tag: 'Оплата',
