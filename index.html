@@ -24,7 +24,7 @@
 <body>
 
   <!-- ░░ Skip link ░░ -->
-  <a href="#main" class="skip-link">Перейти до контенту</a>
+  <a href="#main" class="skip-link" data-i18n="skip">Перейти до контенту</a>
 
   <!-- ░░ SVG icon sprite (Lucide-style, stroke 1.6) ░░ -->
   <svg width="0" height="0" class="svg-sprite" aria-hidden="true" focusable="false"><defs>
@@ -58,20 +58,23 @@
 
   <!-- ░░ Navbar ░░ -->
   <header class="nav" id="nav">
-    <a href="#hero" class="nav__brand" aria-label="Marina Kalashnikova — AI Creator Studio, на головну">
+    <a href="#hero" class="nav__brand" aria-label="Marina Kalashnikova — AI Creator Studio">
       <span class="nav__logo">MK</span>
       <span class="nav__brand-text">AI&nbsp;Creator<span class="nav__brand-sub">Studio</span></span>
     </a>
     <nav class="nav__links" id="navLinks" aria-label="Основна навігація">
-      <a href="#services">Послуги</a>
-      <a href="#work">Портфоліо</a>
-      <a href="#process">Процес</a>
-      <a href="#pricing">Тарифи</a>
-      <a href="#voices">Відгуки</a>
+      <a href="#services" data-i18n="nav.services">Послуги</a>
+      <a href="#work" data-i18n="nav.work">Портфоліо</a>
+      <a href="#process" data-i18n="nav.process">Процес</a>
+      <a href="#pricing" data-i18n="nav.pricing">Тарифи</a>
+      <a href="#voices" data-i18n="nav.voices">Відгуки</a>
     </nav>
-    <a href="#contact" class="btn btn--primary nav__cta">
-      Замовити AI-проєкт <svg class="ic ic-sm"><use href="#i-arrow"/></svg>
-    </a>
+    <div class="lang" role="group" aria-label="Мова сайту / Language">
+      <button class="lang__btn is-active" data-lang="uk" aria-pressed="true">UA</button>
+      <button class="lang__btn" data-lang="ru" aria-pressed="false">RU</button>
+      <button class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a href="#contact" class="btn btn--primary nav__cta" data-i18n="nav.cta">Замовити AI-проєкт</a>
     <button class="nav__burger" id="burger" aria-label="Відкрити меню" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
@@ -79,7 +82,7 @@
 
   <main id="main">
 
-    <!-- ░░ Hero (fullscreen cinematic) ░░ -->
+    <!-- ░░ Hero ░░ -->
     <section class="hero" id="hero">
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="hero__scrim" aria-hidden="true"></div>
@@ -89,40 +92,31 @@
 
       <div class="hero__content">
         <div class="hero__inner reveal">
-          <span class="pill"><span class="pill__dot"></span> AI Creator Studio · Кінематографічний AI-продакшн</span>
-          <h1 class="hero__title">
-            Кінематографічний<br />
-            <span class="grad">AI-контент</span> <span class="serif">світового рівня</span>
-          </h1>
-          <p class="hero__sub">
-            <strong>Marina Kalashnikova</strong> · <span class="hero__handle">@aicreatormk8</span> — AI Creator
-            та спеціалістка з цифрової автоматизації. Перетворюю ідеї на преміальний візуал, відео,
-            віртуальні образи, сайти та автоматизовані системи — повний цикл під ваш бренд.
-          </p>
+          <span class="pill"><span class="pill__dot"></span> <span data-i18n="hero.pill">AI Creator Studio · Кінематографічний AI-продакшн</span></span>
+          <h1 class="hero__title" data-i18n="hero.title">Кінематографічний<br /><span class="grad">AI-контент</span> <span class="serif">світового рівня</span></h1>
+          <p class="hero__sub" data-i18n="hero.sub"><strong>Marina Kalashnikova</strong> · <span class="hero__handle">@aicreatormk8</span> — AI Creator та спеціалістка з цифрової автоматизації. Перетворюю ідеї на преміальний візуал, відео, віртуальні образи, сайти та автоматизовані системи — повний цикл під ваш бренд.</p>
           <div class="hero__actions">
-            <a href="#contact" class="btn btn--primary btn--lg">
-              Замовити AI-проєкт <svg class="ic ic-sm"><use href="#i-arrow"/></svg>
-            </a>
-            <a href="#work" class="btn btn--glass btn--lg">Переглянути портфоліо</a>
+            <a href="#contact" class="btn btn--primary btn--lg"><span data-i18n="hero.cta1">Замовити AI-проєкт</span> <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
+            <a href="#work" class="btn btn--glass btn--lg" data-i18n="hero.cta2">Переглянути портфоліо</a>
           </div>
 
           <ul class="hero__stats">
-            <li><strong data-count="200" data-suffix="+">0</strong><span>AI-проєктів</span></li>
-            <li><strong data-count="60" data-suffix="+">0</strong><span>брендів</span></li>
-            <li><strong data-count="24" data-suffix="год">0</strong><span>до концептів</span></li>
+            <li><strong data-count="200" data-suffix="+">0</strong><span data-i18n="hero.stat1">AI-проєктів</span></li>
+            <li><strong data-count="60" data-suffix="+">0</strong><span data-i18n="hero.stat2">брендів</span></li>
+            <li><strong data-count="24" data-suffix="">0</strong><span data-i18n="hero.stat3">годин до концептів</span></li>
           </ul>
         </div>
       </div>
 
       <a href="#services" class="hero__scroll" aria-label="Гортати вниз">
-        <span>Гортати</span>
+        <span data-i18n="hero.scroll">Гортати</span>
         <svg class="ic ic-sm"><use href="#i-arrow-down"/></svg>
       </a>
     </section>
 
-    <!-- ░░ Tools marquee ░░ -->
+    <!-- ░░ Marquee ░░ -->
     <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
+      <div class="marquee__track" id="marqueeTrack">
         <span>AI-фотогенерація</span><i>✦</i><span>AI-відео</span><i>✦</i><span>Віртуальні інфлюенсери</span><i>✦</i>
         <span>Предметна зйомка</span><i>✦</i><span>UGC-реклама</span><i>✦</i><span>Сайти під ключ</span><i>✦</i>
         <span>AI-автоматизація</span><i>✦</i><span>Бренд-контент</span><i>✦</i>
@@ -135,58 +129,55 @@
     <!-- ░░ Services ░░ -->
     <section class="section" id="services">
       <div class="section__head reveal">
-        <p class="eyebrow">Послуги студії</p>
-        <h2>AI-рішення <span class="serif">будь-якої</span> складності</h2>
-        <p class="section__lead">
-          Три напрями повного циклу: кінематографічний AI-візуал, сайти під ключ
-          та інтелектуальна автоматизація — від ідеї до запуску.
-        </p>
+        <p class="eyebrow" data-i18n="srv.eyebrow">Послуги студії</p>
+        <h2 data-i18n="srv.h2">AI-рішення <span class="serif">будь-якої</span> складності</h2>
+        <p class="section__lead" data-i18n="srv.lead">Три напрями повного циклу: кінематографічний AI-візуал, сайти під ключ та інтелектуальна автоматизація — від ідеї до запуску.</p>
       </div>
 
       <div class="pillars">
         <article class="pillar pillar--accent reveal">
           <div class="pillar__icon"><svg class="ic"><use href="#i-sparkles"/></svg></div>
-          <h3>AI-візуал та контент</h3>
-          <p>Преміальні зображення, відео та персонажі рівня студії — у єдиному стилі вашого бренду.</p>
+          <h3 data-i18n="p1.title">AI-візуал та контент</h3>
+          <p data-i18n="p1.desc">Преміальні зображення, відео та персонажі рівня студії — у єдиному стилі вашого бренду.</p>
           <ul class="pillar__list">
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI-генерація фото</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI-генерація відео</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI-моделі та віртуальні інфлюенсери</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Предметна зйомка</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> UGC-реклама</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Візуал для соцмереж</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Fashion &amp; lifestyle</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Бренд-контент</li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i1">AI-генерація фото</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i2">AI-генерація відео</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i3">AI-моделі та віртуальні інфлюенсери</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i4">Предметна зйомка</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i5">UGC-реклама</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i6">Візуал для соцмереж</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i7">Fashion &amp; lifestyle</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p1.i8">Бренд-контент</span></li>
           </ul>
-          <a href="#contact" class="pillar__cta" data-intent="content">Створити AI-контент <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
+          <a href="#contact" class="pillar__cta" data-intent="content"><span data-i18n="p1.cta">Створити AI-контент</span> <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
         </article>
 
         <article class="pillar reveal">
           <div class="pillar__icon"><svg class="ic"><use href="#i-layout"/></svg></div>
-          <h3>Сайти та веброзробка</h3>
-          <p>Швидкі, сучасні та конверсійні сайти, які виглядають дорого й працюють на результат.</p>
+          <h3 data-i18n="p2.title">Сайти та веброзробка</h3>
+          <p data-i18n="p2.desc">Швидкі, сучасні та конверсійні сайти, які виглядають дорого й працюють на результат.</p>
           <ul class="pillar__list">
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Створення сайтів</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Лендінги</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Бізнес-сайти</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Адаптив та преміум-дизайн</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> SEO-готова структура</li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p2.i1">Створення сайтів</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p2.i2">Лендінги</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p2.i3">Бізнес-сайти</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p2.i4">Адаптив та преміум-дизайн</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p2.i5">SEO-готова структура</span></li>
           </ul>
-          <a href="#contact" class="pillar__cta" data-intent="site">Обговорити сайт <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
+          <a href="#contact" class="pillar__cta" data-intent="site"><span data-i18n="p2.cta">Обговорити сайт</span> <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
         </article>
 
         <article class="pillar reveal">
           <div class="pillar__icon"><svg class="ic"><use href="#i-workflow"/></svg></div>
-          <h3>Автоматизація та AI-системи</h3>
-          <p>Звільняю години рутини: інтелектуальні воркфлоу, асистенти та авто-деплой.</p>
+          <h3 data-i18n="p3.title">Автоматизація та AI-системи</h3>
+          <p data-i18n="p3.desc">Звільняю години рутини: інтелектуальні воркфлоу, асистенти та авто-деплой.</p>
           <ul class="pillar__list">
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Автоматизація сайтів</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI workflow-автоматизація</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> GitHub / Vercel деплой</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI-асистенти</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Автоматизовані системи</li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p3.i1">Автоматизація сайтів</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p3.i2">AI workflow-автоматизація</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p3.i3">GitHub / Vercel деплой</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p3.i4">AI-асистенти</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="p3.i5">Автоматизовані системи</span></li>
           </ul>
-          <a href="#contact" class="pillar__cta" data-intent="automation">Замовити автоматизацію <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
+          <a href="#contact" class="pillar__cta" data-intent="automation"><span data-i18n="p3.cta">Замовити автоматизацію</span> <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
         </article>
       </div>
     </section>
@@ -194,123 +185,123 @@
     <!-- ░░ Portfolio ░░ -->
     <section class="section" id="work">
       <div class="section__head reveal">
-        <p class="eyebrow">Портфоліо</p>
-        <h2>Вибрані <span class="grad">AI-проєкти</span></h2>
-        <p class="section__lead">Реальні напрями студії — від AI-зйомки до сайтів і автоматизації.</p>
+        <p class="eyebrow" data-i18n="work.eyebrow">Портфоліо</p>
+        <h2 data-i18n="work.h2">Вибрані <span class="grad">AI-проєкти</span></h2>
+        <p class="section__lead" data-i18n="work.lead">Реальні напрями студії — від AI-зйомки до сайтів і автоматизації.</p>
       </div>
 
       <div class="filters reveal" role="tablist" aria-label="Фільтр портфоліо">
-        <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">Усі</button>
-        <button class="filter" data-filter="photo" role="tab" aria-selected="false">AI-фото</button>
-        <button class="filter" data-filter="video" role="tab" aria-selected="false">AI-відео</button>
-        <button class="filter" data-filter="models" role="tab" aria-selected="false">AI-моделі</button>
-        <button class="filter" data-filter="web" role="tab" aria-selected="false">Сайти</button>
-        <button class="filter" data-filter="auto" role="tab" aria-selected="false">Автоматизація</button>
-        <button class="filter" data-filter="brand" role="tab" aria-selected="false">Бренд</button>
+        <button class="filter is-active" data-filter="all" role="tab" aria-selected="true" data-i18n="filter.all">Усі</button>
+        <button class="filter" data-filter="photo" role="tab" aria-selected="false" data-i18n="filter.photo">AI-фото</button>
+        <button class="filter" data-filter="video" role="tab" aria-selected="false" data-i18n="filter.video">AI-відео</button>
+        <button class="filter" data-filter="models" role="tab" aria-selected="false" data-i18n="filter.models">AI-моделі</button>
+        <button class="filter" data-filter="web" role="tab" aria-selected="false" data-i18n="filter.web">Сайти</button>
+        <button class="filter" data-filter="auto" role="tab" aria-selected="false" data-i18n="filter.auto">Автоматизація</button>
+        <button class="filter" data-filter="brand" role="tab" aria-selected="false" data-i18n="filter.brand">Бренд</button>
       </div>
 
       <div class="work" id="workGrid">
         <article class="work__item reveal" data-cat="photo" style="--accent:#b17fff">
           <div class="work__media work__media--1"><svg class="work__ic"><use href="#i-image"/></svg><span>AI&nbsp;Photo</span></div>
-          <div class="work__body"><span class="tag">AI-фото · Fashion</span><h3>Кампанія «Neon Atelier»</h3><p>120+ fashion-візуалів у єдиному стилі — +240% до залученості.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w1.tag">AI-фото · Fashion</span><h3 data-i18n="w1.h3">Кампанія «Neon Atelier»</h3><p data-i18n="w1.p">120+ fashion-візуалів у єдиному стилі — +240% до залученості.</p></div>
         </article>
         <article class="work__item reveal" data-cat="video" style="--accent:#ff8e6b">
           <div class="work__media work__media--2"><svg class="work__ic"><use href="#i-video"/></svg><span>AI&nbsp;Video</span></div>
-          <div class="work__body"><span class="tag">AI-відео · UGC</span><h3>UGC-реклама для DTC-бренду</h3><p>Серія коротких роликів повністю на генеративному відео.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w2.tag">AI-відео · UGC</span><h3 data-i18n="w2.h3">UGC-реклама для DTC-бренду</h3><p data-i18n="w2.p">Серія коротких роликів повністю на генеративному відео.</p></div>
         </article>
         <article class="work__item reveal" data-cat="models" style="--accent:#5b8bff">
           <div class="work__media work__media--3"><svg class="work__ic"><use href="#i-user"/></svg><span>AI&nbsp;Model</span></div>
-          <div class="work__body"><span class="tag">Віртуальна інфлюенсерка</span><h3>Цифровий персонаж «AVA»</h3><p>Послідовна AI-модель для соцмереж — обличчя бренду без зйомок.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w3.tag">Віртуальна інфлюенсерка</span><h3 data-i18n="w3.h3">Цифровий персонаж «AVA»</h3><p data-i18n="w3.p">Послідовна AI-модель для соцмереж — обличчя бренду без зйомок.</p></div>
         </article>
         <article class="work__item reveal" data-cat="photo" style="--accent:#3ee0c0">
           <div class="work__media work__media--4"><svg class="work__ic"><use href="#i-box"/></svg><span>Product</span></div>
-          <div class="work__body"><span class="tag">Предметна зйомка</span><h3>AI-візуали для косметики</h3><p>Студійні предметні кадри без фотостудії — каталог за кілька днів.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w4.tag">Предметна зйомка</span><h3 data-i18n="w4.h3">AI-візуали для косметики</h3><p data-i18n="w4.p">Студійні предметні кадри без фотостудії — каталог за кілька днів.</p></div>
         </article>
         <article class="work__item reveal" data-cat="web" style="--accent:#9d7bff">
           <div class="work__media work__media--5"><svg class="work__ic"><use href="#i-layout"/></svg><span>Website</span></div>
-          <div class="work__body"><span class="tag">Сайт · Vercel</span><h3>Лендінг для AI-стартапу</h3><p>Преміальний односторінковий сайт з деплоєм на Vercel за 5 днів.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w5.tag">Сайт · Vercel</span><h3 data-i18n="w5.h3">Лендінг для AI-стартапу</h3><p data-i18n="w5.p">Преміальний односторінковий сайт з деплоєм на Vercel за 5 днів.</p></div>
         </article>
         <article class="work__item reveal" data-cat="auto" style="--accent:#ffb866">
           <div class="work__media work__media--6"><svg class="work__ic"><use href="#i-workflow"/></svg><span>Automation</span></div>
-          <div class="work__body"><span class="tag">AI-автоматизація</span><h3>Контент-воркфлоу для агенції</h3><p>Автоматизований пайплайн генерації та публікації — мінус 60% рутини.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w6.tag">AI-автоматизація</span><h3 data-i18n="w6.h3">Контент-воркфлоу для агенції</h3><p data-i18n="w6.p">Автоматизований пайплайн генерації та публікації — мінус 60% рутини.</p></div>
         </article>
         <article class="work__item reveal" data-cat="brand" style="--accent:#ff8fb3">
           <div class="work__media work__media--2"><svg class="work__ic"><use href="#i-palette"/></svg><span>Branding</span></div>
-          <div class="work__body"><span class="tag">Бренд-контент</span><h3>Айдентика «Aether Labs»</h3><p>Повна візуальна система, згенерована й зведена в єдиний гайдлайн.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w7.tag">Бренд-контент</span><h3 data-i18n="w7.h3">Айдентика «Aether Labs»</h3><p data-i18n="w7.p">Повна візуальна система, згенерована й зведена в єдиний гайдлайн.</p></div>
         </article>
         <article class="work__item reveal" data-cat="video" style="--accent:#68f8ff">
           <div class="work__media work__media--3"><svg class="work__ic"><use href="#i-video"/></svg><span>Cinematic</span></div>
-          <div class="work__body"><span class="tag">AI-відео · Promo</span><h3>Кінематографічний промо-ролик</h3><p>30-секундний кліп для запуску продукту — від сторіборду до монтажу.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w8.tag">AI-відео · Promo</span><h3 data-i18n="w8.h3">Кінематографічний промо-ролик</h3><p data-i18n="w8.p">30-секундний кліп для запуску продукту — від сторіборду до монтажу.</p></div>
         </article>
         <article class="work__item reveal" data-cat="brand" style="--accent:#c17fff">
           <div class="work__media work__media--5"><svg class="work__ic"><use href="#i-grid"/></svg><span>Social</span></div>
-          <div class="work__body"><span class="tag">Соцмережі</span><h3>Контент-пак для Instagram</h3><p>Цілісна візуальна стрічка: обкладинки, каруселі та reels-кадри.</p></div>
+          <div class="work__body"><span class="tag" data-i18n="w9.tag">Соцмережі</span><h3 data-i18n="w9.h3">Контент-пак для Instagram</h3><p data-i18n="w9.p">Цілісна візуальна стрічка: обкладинки, каруселі та reels-кадри.</p></div>
         </article>
       </div>
 
       <div class="work__more reveal">
-        <a href="#contact" class="btn btn--glass">Обговорити ваш проєкт <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
+        <a href="#contact" class="btn btn--glass"><span data-i18n="work.more">Обговорити ваш проєкт</span> <svg class="ic ic-sm"><use href="#i-arrow"/></svg></a>
       </div>
     </section>
 
     <!-- ░░ Process ░░ -->
     <section class="section process" id="process">
       <div class="section__head reveal">
-        <p class="eyebrow">Як я працюю</p>
-        <h2>Процес, що виглядає <span class="serif">дорого</span></h2>
-        <p class="section__lead">Прозорі етапи від першого дзвінка до запуску й підтримки.</p>
+        <p class="eyebrow" data-i18n="proc.eyebrow">Як я працюю</p>
+        <h2 data-i18n="proc.h2">Процес, що виглядає <span class="serif">дорого</span></h2>
+        <p class="section__lead" data-i18n="proc.lead">Прозорі етапи від першого дзвінка до запуску й підтримки.</p>
       </div>
       <div class="timeline">
-        <article class="tl reveal"><span class="tl__num">01</span><div class="tl__icon"><svg class="ic"><use href="#i-message"/></svg></div><h3>Бриф та стратегія</h3><p>Занурююсь у ваш бренд, цілі та референси. Фіксуємо обсяг і результат.</p></article>
-        <article class="tl reveal"><span class="tl__num">02</span><div class="tl__icon"><svg class="ic"><use href="#i-palette"/></svg></div><h3>Концепція та мудборд</h3><p>Визначаю візуальний напрям. Перші концепти — вже за 24 години.</p></article>
-        <article class="tl reveal"><span class="tl__num">03</span><div class="tl__icon"><svg class="ic"><use href="#i-sparkles"/></svg></div><h3>AI-продакшн</h3><p>Генерація та доопрацювання контенту, розробка сайту чи системи.</p></article>
-        <article class="tl reveal"><span class="tl__num">04</span><div class="tl__icon"><svg class="ic"><use href="#i-rocket"/></svg></div><h3>Фіналізація та деплой</h3><p>Готовий результат: файли, публікація або деплой на GitHub / Vercel.</p></article>
+        <article class="tl reveal"><span class="tl__num">01</span><div class="tl__icon"><svg class="ic"><use href="#i-message"/></svg></div><h3 data-i18n="t1.h3">Бриф та стратегія</h3><p data-i18n="t1.p">Занурююсь у ваш бренд, цілі та референси. Фіксуємо обсяг і результат.</p></article>
+        <article class="tl reveal"><span class="tl__num">02</span><div class="tl__icon"><svg class="ic"><use href="#i-palette"/></svg></div><h3 data-i18n="t2.h3">Концепція та мудборд</h3><p data-i18n="t2.p">Визначаю візуальний напрям. Перші концепти — вже за 24 години.</p></article>
+        <article class="tl reveal"><span class="tl__num">03</span><div class="tl__icon"><svg class="ic"><use href="#i-sparkles"/></svg></div><h3 data-i18n="t3.h3">AI-продакшн</h3><p data-i18n="t3.p">Генерація та доопрацювання контенту, розробка сайту чи системи.</p></article>
+        <article class="tl reveal"><span class="tl__num">04</span><div class="tl__icon"><svg class="ic"><use href="#i-rocket"/></svg></div><h3 data-i18n="t4.h3">Фіналізація та деплой</h3><p data-i18n="t4.p">Готовий результат: файли, публікація або деплой на GitHub / Vercel.</p></article>
       </div>
     </section>
 
     <!-- ░░ Pricing ░░ -->
     <section class="section" id="pricing">
       <div class="section__head reveal">
-        <p class="eyebrow">Пакети послуг</p>
-        <h2>Прозорі <span class="grad">тарифи</span></h2>
-        <p class="section__lead">Стартові ціни орієнтовні — фінальний прорахунок завжди індивідуальний під ваш обсяг.</p>
+        <p class="eyebrow" data-i18n="pr.eyebrow">Пакети послуг</p>
+        <h2 data-i18n="pr.h2">Прозорі <span class="grad">тарифи</span></h2>
+        <p class="section__lead" data-i18n="pr.lead">Стартові ціни орієнтовні — фінальний прорахунок завжди індивідуальний під ваш обсяг.</p>
       </div>
       <div class="plans">
         <article class="plan reveal">
-          <div class="plan__head"><h3>Старт</h3><p class="plan__desc">Окремий AI-контент або проста сторінка</p></div>
-          <div class="plan__price"><span class="plan__from">від</span> $150</div>
+          <div class="plan__head"><h3 data-i18n="pl1.name">Старт</h3><p class="plan__desc" data-i18n="pl1.desc">Окремий AI-контент або проста сторінка</p></div>
+          <div class="plan__price"><span class="plan__from" data-i18n="price.from">від</span> $150</div>
           <ul class="plan__list">
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI-фотосет або серія візуалів</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Контент для соцмереж</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Односторінковий лендінг</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> 2 раунди правок</li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl1.i1">AI-фотосет або серія візуалів</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl1.i2">Контент для соцмереж</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl1.i3">Односторінковий лендінг</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl1.i4">2 раунди правок</span></li>
           </ul>
-          <a href="#contact" class="btn btn--glass btn--block" data-intent="start">Обрати «Старт»</a>
+          <a href="#contact" class="btn btn--glass btn--block" data-intent="start" data-i18n="pl1.btn">Обрати «Старт»</a>
         </article>
         <article class="plan plan--featured reveal">
-          <span class="plan__badge">Популярний</span>
-          <div class="plan__head"><h3>Studio</h3><p class="plan__desc">Комплексний AI-продакшн під бренд</p></div>
-          <div class="plan__price"><span class="plan__from">від</span> $600</div>
+          <span class="plan__badge" data-i18n="pl.badge">Популярний</span>
+          <div class="plan__head"><h3 data-i18n="pl2.name">Studio</h3><p class="plan__desc" data-i18n="pl2.desc">Комплексний AI-продакшн під бренд</p></div>
+          <div class="plan__price"><span class="plan__from" data-i18n="price.from">від</span> $600</div>
           <ul class="plan__list">
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Кампанія AI-фото та відео</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Віртуальна модель або UGC-серія</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Багатосторінковий сайт + деплой</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Єдиний візуальний стиль бренду</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Пріоритетна підтримка</li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl2.i1">Кампанія AI-фото та відео</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl2.i2">Віртуальна модель або UGC-серія</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl2.i3">Багатосторінковий сайт + деплой</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl2.i4">Єдиний візуальний стиль бренду</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl2.i5">Пріоритетна підтримка</span></li>
           </ul>
-          <a href="#contact" class="btn btn--primary btn--block" data-intent="studio">Обрати «Studio»</a>
+          <a href="#contact" class="btn btn--primary btn--block" data-intent="studio" data-i18n="pl2.btn">Обрати «Studio»</a>
         </article>
         <article class="plan reveal">
-          <div class="plan__head"><h3>Premium</h3><p class="plan__desc">Студія повного циклу та автоматизація</p></div>
-          <div class="plan__price">Індивідуально</div>
+          <div class="plan__head"><h3 data-i18n="pl3.name">Premium</h3><p class="plan__desc" data-i18n="pl3.desc">Студія повного циклу та автоматизація</p></div>
+          <div class="plan__price" data-i18n="pl3.price">Індивідуально</div>
           <ul class="plan__list">
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Постійний AI-контент під ключ</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Власна віртуальна інфлюенсерка</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI workflow та автоматизація</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> AI-асистенти та системи</li>
-            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> Супровід та масштабування</li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl3.i1">Постійний AI-контент під ключ</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl3.i2">Власна віртуальна інфлюенсерка</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl3.i3">AI workflow та автоматизація</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl3.i4">AI-асистенти та системи</span></li>
+            <li><svg class="ic ic-sm"><use href="#i-check"/></svg> <span data-i18n="pl3.i5">Супровід та масштабування</span></li>
           </ul>
-          <a href="#contact" class="btn btn--glass btn--block" data-intent="premium">Обговорити Premium</a>
+          <a href="#contact" class="btn btn--glass btn--block" data-intent="premium" data-i18n="pl3.btn">Обговорити Premium</a>
         </article>
       </div>
     </section>
@@ -318,24 +309,24 @@
     <!-- ░░ Testimonials ░░ -->
     <section class="section voices" id="voices">
       <div class="section__head reveal">
-        <p class="eyebrow">Відгуки</p>
-        <h2>Мені довіряють <span class="grad">інноватори</span></h2>
+        <p class="eyebrow" data-i18n="v.eyebrow">Відгуки</p>
+        <h2 data-i18n="v.h2">Мені довіряють <span class="grad">інноватори</span></h2>
       </div>
       <div class="voices__row">
         <figure class="voice reveal">
           <div class="voice__stars" aria-hidden="true"><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg></div>
-          <p>«Марина перетворила розмитий бриф на цілісну AI-кампанію за тиждень. Виглядає як трейлер.»</p>
-          <figcaption><span class="voice__ava">А</span><span><strong>Анна К.</strong><br />Founder, Fashion Brand</span></figcaption>
+          <p data-i18n="vc1.text">«Марина перетворила розмитий бриф на цілісну AI-кампанію за тиждень. Виглядає як трейлер.»</p>
+          <figcaption><span class="voice__ava">А</span><span><strong>Анна К.</strong><br /><span data-i18n="vc1.role">Founder, Fashion Brand</span></span></figcaption>
         </figure>
         <figure class="voice reveal">
           <div class="voice__stars" aria-hidden="true"><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg></div>
-          <p>«Сайт і автоматизація під ключ. Швидкість і якість, яких ми не очікували від AI.»</p>
-          <figcaption><span class="voice__ava">Д</span><span><strong>Дмитро С.</strong><br />CMO, SaaS Startup</span></figcaption>
+          <p data-i18n="vc2.text">«Сайт і автоматизація під ключ. Швидкість і якість, яких ми не очікували від AI.»</p>
+          <figcaption><span class="voice__ava">Д</span><span><strong>Дмитро С.</strong><br /><span data-i18n="vc2.role">CMO, SaaS Startup</span></span></figcaption>
         </figure>
         <figure class="voice reveal">
           <div class="voice__stars" aria-hidden="true"><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg><svg class="ic ic-sm"><use href="#i-star"/></svg></div>
-          <p>«Найкраще — це смак. Багато хто вміє в AI, але результат Марини виглядає преміально.»</p>
-          <figcaption><span class="voice__ava">О</span><span><strong>Олена М.</strong><br />Art Director</span></figcaption>
+          <p data-i18n="vc3.text">«Найкраще — це смак. Багато хто вміє в AI, але результат Марини виглядає преміально.»</p>
+          <figcaption><span class="voice__ava">О</span><span><strong>Олена М.</strong><br /><span data-i18n="vc3.role">Art Director</span></span></figcaption>
         </figure>
       </div>
     </section>
@@ -345,13 +336,13 @@
       <div class="cta__glow" aria-hidden="true"></div>
       <div class="cta__inner reveal">
         <div class="cta__copy">
-          <p class="eyebrow">Готові почати?</p>
-          <h2>Давайте створимо щось, <span class="serif">що запам'ятають</span></h2>
-          <p class="section__lead">Розкажіть про ідею — і вже завтра побачите перші концепти. Оберіть напрям або напишіть мені напряму.</p>
+          <p class="eyebrow" data-i18n="ct.eyebrow">Готові почати?</p>
+          <h2 data-i18n="ct.h2">Давайте створимо щось, <span class="serif">що запам'ятають</span></h2>
+          <p class="section__lead" data-i18n="ct.lead">Розкажіть про ідею — і вже завтра побачите перші концепти. Оберіть напрям або напишіть мені напряму.</p>
           <div class="cta__quick">
-            <a href="#contact-form" class="btn btn--primary btn--lg" data-intent="project">Замовити AI-проєкт</a>
-            <a href="#contact-form" class="btn btn--glass btn--lg" data-intent="site">Обговорити сайт</a>
-            <a href="#contact-form" class="btn btn--glass btn--lg" data-intent="content">Створити AI-контент</a>
+            <a href="#contact-form" class="btn btn--primary btn--lg" data-intent="project" data-i18n="ct.q1">Замовити AI-проєкт</a>
+            <a href="#contact-form" class="btn btn--glass btn--lg" data-intent="site" data-i18n="ct.q2">Обговорити сайт</a>
+            <a href="#contact-form" class="btn btn--glass btn--lg" data-intent="content" data-i18n="ct.q3">Створити AI-контент</a>
           </div>
           <ul class="cta__contacts">
             <li><a href="mailto:aicreatormk8@gmail.com"><svg class="ic ic-sm"><use href="#i-mail"/></svg> aicreatormk8@gmail.com</a></li>
@@ -362,29 +353,29 @@
 
         <form class="cform" id="contact-form" novalidate>
           <div class="cform__row">
-            <label for="cf-name">Ім'я <span class="req" aria-hidden="true">*</span></label>
-            <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Як до вас звертатися" required />
+            <label for="cf-name"><span data-i18n="f.name">Ім'я</span> <span class="req" aria-hidden="true">*</span></label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Як до вас звертатися" data-i18n-ph="f.name.ph" required />
           </div>
           <div class="cform__row">
-            <label for="cf-email">Email <span class="req" aria-hidden="true">*</span></label>
+            <label for="cf-email"><span data-i18n="f.email">Email</span> <span class="req" aria-hidden="true">*</span></label>
             <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
           </div>
           <div class="cform__row">
-            <label for="cf-service">Напрям</label>
+            <label for="cf-service" data-i18n="f.service">Напрям</label>
             <select id="cf-service" name="service">
-              <option value="AI-проєкт">AI-проєкт (загальний)</option>
-              <option value="AI-контент">AI-контент (фото / відео)</option>
-              <option value="Віртуальна модель">Віртуальна модель / інфлюенсер</option>
-              <option value="Сайт">Сайт / лендінг</option>
-              <option value="Автоматизація">Автоматизація / AI-системи</option>
+              <option value="AI-проєкт" data-i18n="f.opt1">AI-проєкт (загальний)</option>
+              <option value="AI-контент" data-i18n="f.opt2">AI-контент (фото / відео)</option>
+              <option value="Віртуальна модель" data-i18n="f.opt3">Віртуальна модель / інфлюенсер</option>
+              <option value="Сайт" data-i18n="f.opt4">Сайт / лендінг</option>
+              <option value="Автоматизація" data-i18n="f.opt5">Автоматизація / AI-системи</option>
             </select>
           </div>
           <div class="cform__row">
-            <label for="cf-msg">Деталі проєкту</label>
-            <textarea id="cf-msg" name="message" rows="4" placeholder="Кілька слів про задачу, терміни та бюджет"></textarea>
+            <label for="cf-msg" data-i18n="f.msg">Деталі проєкту</label>
+            <textarea id="cf-msg" name="message" rows="4" placeholder="Кілька слів про задачу, терміни та бюджет" data-i18n-ph="f.msg.ph"></textarea>
           </div>
-          <button type="submit" class="btn btn--primary btn--block btn--lg">Надіслати заявку <svg class="ic ic-sm"><use href="#i-send"/></svg></button>
-          <p class="cform__hint" id="cf-hint" role="status" aria-live="polite">Відкриється ваш поштовий застосунок із готовим листом.</p>
+          <button type="submit" class="btn btn--primary btn--block btn--lg"><span data-i18n="f.btn">Надіслати заявку</span> <svg class="ic ic-sm"><use href="#i-send"/></svg></button>
+          <p class="cform__hint" id="cf-hint" role="status" aria-live="polite" data-i18n="f.hint">Відкриється ваш поштовий застосунок із готовим листом.</p>
         </form>
       </div>
     </section>
@@ -396,7 +387,7 @@
     <div class="footer__top">
       <div class="footer__brand-col">
         <div class="footer__brand"><span class="nav__logo">MK</span> AI Creator Studio</div>
-        <p class="footer__tag">Marina Kalashnikova — AI Creator та спеціалістка з цифрової автоматизації. Кінематографічний AI-контент та цифрові продукти під ваш бренд.</p>
+        <p class="footer__tag" data-i18n="ft.tag">Marina Kalashnikova — AI Creator та спеціалістка з цифрової автоматизації. Кінематографічний AI-контент та цифрові продукти під ваш бренд.</p>
         <div class="footer__social">
           <a href="https://instagram.com/aicreatormk8" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic"><use href="#i-instagram"/></svg></a>
           <a href="https://t.me/aicreatormk8" target="_blank" rel="noopener" aria-label="Telegram"><svg class="ic"><use href="#i-send"/></svg></a>
@@ -405,17 +396,17 @@
         </div>
       </div>
       <nav class="footer__nav" aria-label="Послуги">
-        <h4>Послуги</h4>
-        <a href="#services">AI-контент</a><a href="#services">Віртуальні моделі</a><a href="#services">Сайти під ключ</a><a href="#services">Автоматизація</a>
+        <h4 data-i18n="ft.h.services">Послуги</h4>
+        <a href="#services" data-i18n="ft.s1">AI-контент</a><a href="#services" data-i18n="ft.s2">Віртуальні моделі</a><a href="#services" data-i18n="ft.s3">Сайти під ключ</a><a href="#services" data-i18n="ft.s4">Автоматизація</a>
       </nav>
       <nav class="footer__nav" aria-label="Студія">
-        <h4>Студія</h4>
-        <a href="#work">Портфоліо</a><a href="#process">Процес</a><a href="#pricing">Тарифи</a><a href="#contact">Контакти</a>
+        <h4 data-i18n="ft.h.studio">Студія</h4>
+        <a href="#work" data-i18n="ft.l1">Портфоліо</a><a href="#process" data-i18n="ft.l2">Процес</a><a href="#pricing" data-i18n="ft.l3">Тарифи</a><a href="#contact" data-i18n="ft.l4">Контакти</a>
       </nav>
     </div>
     <div class="footer__bottom">
       <p>© <span id="year"></span> Marina Kalashnikova · AI Creator Studio</p>
-      <p>Створено з ❤️ та AI</p>
+      <p data-i18n="ft.made">Створено з ❤️ та AI</p>
     </div>
   </footer>
 
