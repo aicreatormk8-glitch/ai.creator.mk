@@ -194,6 +194,7 @@ img { max-width: 100%; display: block; }
   width: var(--s); height: var(--s); left: var(--l); top: var(--t);
   background: var(--c); opacity: var(--o);
   animation: bokehFloat var(--d) ease-in-out var(--delay) infinite alternate;
+  animation-duration: calc(var(--d) / var(--spd, 1));
   box-shadow: 0 0 calc(var(--s) * 2.5) var(--c), 0 0 calc(var(--s) * 5) var(--c);
 }
 @keyframes bokehFloat {
@@ -228,6 +229,7 @@ img { max-width: 100%; display: block; }
   width: var(--s); height: var(--s); left: var(--l); top: var(--t);
   background: var(--c); opacity: 0;
   animation: pDrift var(--d) var(--ease, ease-in-out) var(--delay) infinite alternate;
+  animation-duration: calc(var(--d) / var(--spd, 1));
   box-shadow: 0 0 calc(var(--s) * 3.5) var(--c), 0 0 calc(var(--s) * 8) var(--c);
 }
 @keyframes pDrift {

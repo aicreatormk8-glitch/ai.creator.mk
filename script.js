@@ -93,15 +93,23 @@
       heroParticlesEl.appendChild(pFrag);
     }
 
-    /* Mouse parallax */
+    /* Mouse parallax + 5D depth: particles speed up with pointer movement, ease back when it stops */
     if (heroSectionEl) {
       var pmX = 0, pmY = 0, pcX = 0, pcY = 0;
+      var lastMX = null, lastMY = null;   /* last pointer position (px) */
+      var vel = 0;                        /* accumulated recent pointer speed */
+      var spd = 1;                        /* current particle animation-speed multiplier */
       heroSectionEl.addEventListener("mousemove", function (e) {
         var r = heroSectionEl.getBoundingClientRect();
         pmX = (e.clientX - r.left) / r.width  * 2 - 1;
         pmY = (e.clientY - r.top)  / r.height * 2 - 1;
+        if (lastMX !== null) {
+          var dx = e.clientX - lastMX, dy = e.clientY - lastMY;
+          vel += Math.sqrt(dx * dx + dy * dy);
+        }
+        lastMX = e.clientX; lastMY = e.clientY;
       });
-      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; });
+      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; lastMX = null; });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
         pcY += (pmY - pcY) * 0.055;
@@ -111,6 +119,14 @@
         if (bokeh)          bokeh.style.transform           = "translate3d(" + (-x*30).toFixed(2) + "px," + (-y*22).toFixed(2) + "px,0)";
         if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
         if (heroContentEl)  heroContentEl.style.transform   = "translate3d(" + ( x*7).toFixed(2)  + "px," + ( y*4).toFixed(2)  + "px,0)";
+
+        /* Faster pointer → higher target speed (up to ~5x); eased so it ramps up and slows down smoothly */
+        var spdTarget = 1 + Math.min(vel * 0.09, 4);
+        spd += (spdTarget - spd) * 0.10;   /* smooth approach */
+        vel *= 0.80;                        /* decay → when the mouse stops, everything slows back to rest */
+        var spdStr = spd.toFixed(3);
+        if (heroParticlesEl) heroParticlesEl.style.setProperty("--spd", spdStr);
+        if (bokeh)           bokeh.style.setProperty("--spd", spdStr);
         requestAnimationFrame(parallaxLoop);
       })();
     }
