@@ -161,17 +161,19 @@
     });
   });
 
-  /* ── Contact form (FormSubmit backend) ── */
+  /* ── Contact form → /api/contact ── */
   var form = document.getElementById("contact-form");
   var hint = document.getElementById("cf-hint");
   if (form) {
     form.addEventListener("submit", function (e) {
+      e.preventDefault();
       var name = form.name.value.trim();
       var email = form.email.value.trim();
+      var service = form.service.value;
+      var message = form.message.value.trim();
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
       if (!name || !emailOk) {
-        e.preventDefault();
         hint.textContent = !name
           ? "Будь ласка, вкажіть ваше ім'я."
           : "Будь ласка, введіть коректний email.";
@@ -180,10 +182,31 @@
         return;
       }
 
-      hint.textContent = (currentLang === "ru")
-        ? "Отправляем заявку…"
-        : currentLang === "en" ? "Sending…" : "Відправляємо заявку…";
+      hint.textContent = currentLang === "ru" ? "Відправляємо…" : currentLang === "en" ? "Sending…" : "Відправляємо…";
       hint.style.color = "";
+
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, email: email, service: service, message: message })
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.success) {
+          hint.textContent = currentLang === "ru"
+            ? "Заявка отправлена! Проверьте вашу почту."
+            : currentLang === "en" ? "Sent! Check your email." : "Заявку надіслано! Перевірте вашу пошту.";
+          hint.style.color = "#3ee0c0";
+          form.reset();
+        } else {
+          hint.textContent = "Помилка. Напишіть напряму: aicreatormk8@gmail.com";
+          hint.style.color = "#ff8fa3";
+        }
+      })
+      .catch(function () {
+        hint.textContent = "Помилка. Напишіть напряму: aicreatormk8@gmail.com";
+        hint.style.color = "#ff8fa3";
+      });
     });
   }
 
