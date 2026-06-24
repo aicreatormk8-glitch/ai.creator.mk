@@ -395,6 +395,11 @@
     // add more video URLs here
   ];
 
+  var video3Gallery = [
+    "ai-video-2.mp4"
+    // add more video URLs here
+  ];
+
   var lightbox    = document.getElementById("lightbox");
   var lbImg       = document.getElementById("lbImg");
   var lbVid       = document.getElementById("lbVid");
@@ -409,7 +414,7 @@
   var lbReturnId  = "galleryTrigger";
 
   function lbShow(idx) {
-    var items = lbMode === "photo" ? galleryPhotos : videoGallery;
+    var items = lbMode === "photo" ? galleryPhotos : lbMode === "video" ? videoGallery : video3Gallery;
     lbIndex = Math.max(0, Math.min(idx, items.length - 1));
     lbCounter.textContent = (lbIndex + 1) + " / " + items.length;
     lbPrev.disabled = lbIndex === 0;
@@ -457,6 +462,14 @@
     videoTrigger.addEventListener("click", function () { lbOpen("video", "videoGalleryTrigger"); });
     videoTrigger.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); lbOpen("video", "videoGalleryTrigger"); }
+    });
+  }
+
+  var video3Trigger = document.getElementById("video3GalleryTrigger");
+  if (video3Trigger) {
+    video3Trigger.addEventListener("click", function () { lbOpen("video3", "video3GalleryTrigger"); });
+    video3Trigger.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); lbOpen("video3", "video3GalleryTrigger"); }
     });
   }
 

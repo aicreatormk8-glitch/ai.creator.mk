@@ -323,6 +323,17 @@ img { max-width: 100%; display: block; }
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
 }
 #videoGalleryTrigger { cursor: pointer; }
+.work__item--video3 { display: flex; flex-direction: column; height: 100%; }
+.work__media--video3 {
+  display: block; height: auto; flex: 1; width: 100%; min-height: 320px; position: relative; overflow: hidden;
+}
+.work__media--video3::after {
+  content: "Digital humans";
+  position: absolute; top: 1rem; right: 1rem;
+  font-family: "Sora"; font-size: 22px; font-weight: 600; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.85); pointer-events: none; z-index: 1;
+}
+#video3GalleryTrigger { cursor: pointer; }
 .lightbox__vid {
   display: none; max-width: min(92vw, 1100px); max-height: 90vh;
   border-radius: 16px; box-shadow: 0 40px 100px -30px rgba(0,0,0,0.8);
