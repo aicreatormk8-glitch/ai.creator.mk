@@ -403,8 +403,12 @@
   ];
 
   var videoGallery = [
-    "ai-video-1.mp4"
-    // add more video URLs here
+    "ai-video-1.mp4",
+    "ai-video-2b.mp4",
+    "ai-video-2c.mp4",
+    "ai-video-2d.mp4",
+    "ai-video-2e.mp4",
+    "ai-video-2f.mp4"
   ];
 
   var video3Gallery = [
