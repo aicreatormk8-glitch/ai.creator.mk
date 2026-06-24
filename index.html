@@ -225,9 +225,16 @@
             </div>
           </div>
         </article>
-        <article class="work__item reveal" data-cat="video" style="--accent:#ff8e6b">
-          <div class="work__media work__media--2"><svg class="work__ic"><use href="#i-video"/></svg><span>AI&nbsp;Video</span></div>
-          <div class="work__body"><span class="tag" data-i18n="w2.tag">AI-відео · UGC</span><h3 data-i18n="w2.h3">UGC-реклама для DTC-бренду</h3><p data-i18n="w2.p">Серія коротких роликів повністю на генеративному відео.</p></div>
+        <article class="work__item work__item--video reveal" data-cat="video" style="--accent:#ff8e6b" id="videoGalleryTrigger" role="button" tabindex="0" aria-label="Переглянути відео-галерею">
+          <div class="work__media work__media--video">
+            <video class="work__video" autoplay muted loop playsinline>
+              <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CoDNZt3iODN1yFKEYOyElR7Vli/hf_20260513_201105_36b6019b4e7e488baaab3ade69b3eb84.mp4" type="video/mp4">
+            </video>
+            <div class="work__gallery-hint">
+              <svg class="ic"><use href="#i-video"/></svg>
+              <span>Переглянути галерею</span>
+            </div>
+          </div>
         </article>
         <article class="work__item reveal" data-cat="models" style="--accent:#5b8bff">
           <div class="work__media work__media--3"><svg class="work__ic"><use href="#i-user"/></svg><span>AI&nbsp;Model</span></div>
@@ -411,6 +418,9 @@
     </button>
     <div class="lightbox__stage">
       <img class="lightbox__img" id="lbImg" src="" alt="AI Photo" />
+      <video class="lightbox__vid" id="lbVid" controls playsinline>
+        <source id="lbVidSrc" src="" type="video/mp4">
+      </video>
     </div>
     <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Наступне фото">
       <svg class="ic"><use href="#i-chevron-right"/></svg>
