@@ -351,7 +351,7 @@ img { max-width: 100%; display: block; }
   background: url("web-preview-1.png") top center/cover no-repeat;
 }
 .work__media--web::after {
-  content: "Web Development";
+  content: "Web";
   position: absolute; top: 1rem; right: 1rem;
   font-family: "Sora"; font-size: 16px; font-weight: 600; letter-spacing: 0.04em;
   color: rgba(255,255,255,0.85); pointer-events: none; z-index: 1;
