@@ -415,25 +415,38 @@
   var lbClose     = document.getElementById("lbClose");
   var lbBackdrop  = document.getElementById("lbBackdrop");
   var lbIndex     = 0;
-  var lbMode      = "photo"; // "photo" | "video"
+  var lbMode      = "photo"; // "photo" | "video" | "video3" | "video4" | "web"
   var lbReturnId  = "galleryTrigger";
 
   function lbShow(idx) {
-    var items = lbMode === "photo" ? galleryPhotos : lbMode === "video" ? videoGallery : lbMode === "video3" ? video3Gallery : video4Gallery;
+    var items = lbMode === "photo" ? galleryPhotos
+              : lbMode === "video" ? videoGallery
+              : lbMode === "video3" ? video3Gallery
+              : lbMode === "video4" ? video4Gallery
+              : webGallery;
     lbIndex = Math.max(0, Math.min(idx, items.length - 1));
     lbCounter.textContent = (lbIndex + 1) + " / " + items.length;
     lbPrev.disabled = lbIndex === 0;
     lbNext.disabled = lbIndex === items.length - 1;
-    if (lbMode === "photo") {
+    if (lbMode === "web") {
+      var item = items[lbIndex];
+      lbImg.src = item.img;
+      lbImg.classList.remove("is-hidden");
+      lbVid.classList.remove("is-active");
+      lbVid.pause();
+      if (lbSiteLink) { lbSiteLink.href = item.url; lbSiteLink.removeAttribute("hidden"); }
+    } else if (lbMode === "photo") {
       lbImg.src = items[lbIndex];
       lbImg.classList.remove("is-hidden");
       lbVid.classList.remove("is-active");
       lbVid.pause();
+      if (lbSiteLink) lbSiteLink.setAttribute("hidden", "");
     } else {
       lbVidSrc.src = items[lbIndex];
       lbVid.load();
       lbVid.classList.add("is-active");
       lbImg.classList.add("is-hidden");
+      if (lbSiteLink) lbSiteLink.setAttribute("hidden", "");
     }
   }
 
@@ -486,15 +499,16 @@
     });
   }
 
-  var webLinks = [
-    { url: "https://ai-creator-mk.vercel.app", label: "AI Creator Studio" }
+  var webGallery = [
+    { img: "web-preview-1.png", url: "https://ai-creator-mk.vercel.app" }
     // add more sites here
   ];
+  var lbSiteLink  = document.getElementById("lbSiteLink");
   var webTrigger = document.getElementById("webGalleryTrigger");
   if (webTrigger) {
-    webTrigger.addEventListener("click", function () { window.open(webLinks[0].url, "_blank", "noopener"); });
+    webTrigger.addEventListener("click", function () { lbOpen("web", "webGalleryTrigger"); });
     webTrigger.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); window.open(webLinks[0].url, "_blank", "noopener"); }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); lbOpen("web", "webGalleryTrigger"); }
     });
   }
 

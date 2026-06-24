@@ -219,10 +219,6 @@
       <div class="work" id="workGrid">
         <article class="work__item work__item--photo reveal" data-cat="photo" style="--accent:#b17fff" id="galleryTrigger" role="button" tabindex="0" aria-label="Переглянути галерею AI-фото">
           <div class="work__media work__media--photo">
-            <div class="work__gallery-hint">
-              <svg class="ic"><use href="#i-image"/></svg>
-              <span>Переглянути галерею</span>
-            </div>
           </div>
         </article>
         <article class="work__item work__item--video reveal" data-cat="video" style="--accent:#ff8e6b" id="videoGalleryTrigger" role="button" tabindex="0" aria-label="Переглянути відео-галерею">
@@ -439,6 +435,10 @@
       <video class="lightbox__vid" id="lbVid" controls playsinline>
         <source id="lbVidSrc" src="" type="video/mp4">
       </video>
+      <a class="lightbox__site-link" id="lbSiteLink" href="#" target="_blank" rel="noopener" hidden>
+        <svg class="ic ic-sm"><use href="#i-arrow"/></svg>
+        <span>Перейти на сайт</span>
+      </a>
     </div>
     <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Наступне фото">
       <svg class="ic"><use href="#i-chevron-right"/></svg>
