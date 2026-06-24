@@ -198,8 +198,9 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 0 calc(var(--s) * 2.5) var(--c), 0 0 calc(var(--s) * 5) var(--c);
 }
 @keyframes bokehFloat {
-  from { transform: translate3d(0,0,0) scale(1); }
-  to   { transform: translate3d(18px,-50px,0) scale(1.35); opacity: 0.15; }
+  from { transform: translate3d(0,0,0) scale(1); opacity: var(--o); }
+  50%  { opacity: calc(var(--o) * 0.45); }
+  to   { transform: translate3d(var(--bx, 18px), var(--by, -50px), 0) scale(1.35); opacity: var(--o); }
 }
 
 /* ── Ambient glow orbs ── */

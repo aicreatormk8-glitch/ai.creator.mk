@@ -50,7 +50,7 @@
         "rgba(255,190,80,1)", "rgba(124,92,255,1)", "rgba(62,224,192,1)",
         "rgba(91,139,255,1)", "rgba(255,120,80,1)"
       ];
-      var nB = window.innerWidth < 700 ? 14 : 28;
+      var nB = window.innerWidth < 700 ? 22 : 42;
       var bFrag = document.createDocumentFragment();
       for (var bi = 0; bi < nB; bi++) {
         var bEl = document.createElement("span");
@@ -62,6 +62,9 @@
         bEl.style.setProperty("--o", (0.3 + Math.random() * 0.5).toFixed(2));
         bEl.style.setProperty("--d", (10 + Math.random() * 14).toFixed(1) + "s");
         bEl.style.setProperty("--delay", (-Math.random() * 14).toFixed(1) + "s");
+        /* random drift direction per orb so they fly every which way, not all the same */
+        bEl.style.setProperty("--bx", (Math.random() * 90 - 45).toFixed(1) + "px");
+        bEl.style.setProperty("--by", (Math.random() * 90 - 45).toFixed(1) + "px");
         bFrag.appendChild(bEl);
       }
       bokeh.appendChild(bFrag);
@@ -73,14 +76,14 @@
         "rgba(255,215,80,1)", "rgba(62,224,192,1)", "rgba(180,150,255,1)",
         "rgba(255,255,255,1)", "rgba(255,160,100,1)"
       ];
-      var nP = window.innerWidth < 700 ? 22 : 48;
+      var nP = window.innerWidth < 700 ? 36 : 75;
       var pFrag = document.createDocumentFragment();
       for (var pi = 0; pi < nP; pi++) {
         var pEl = document.createElement("span");
         var pSz = 1.5 + Math.random() * 4.5;
         pEl.style.setProperty("--s",     pSz.toFixed(1) + "px");
         pEl.style.setProperty("--l",     (Math.random() * 100).toFixed(2) + "%");
-        pEl.style.setProperty("--t",     (10 + Math.random() * 80).toFixed(2) + "%");
+        pEl.style.setProperty("--t",     (Math.random() * 100).toFixed(2) + "%");
         pEl.style.setProperty("--c",     partColors[(Math.random() * partColors.length) | 0]);
         pEl.style.setProperty("--o",     (0.55 + Math.random() * 0.45).toFixed(2));
         pEl.style.setProperty("--d",     (9 + Math.random() * 18).toFixed(1) + "s");
