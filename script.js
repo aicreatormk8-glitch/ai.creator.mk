@@ -246,7 +246,7 @@
       "f.name": "Имя", "f.name.ph": "Как к вам обращаться", "f.email": "Email", "f.service": "Направление",
       "f.opt1": "AI-проект (общий)", "f.opt2": "AI-контент (фото / видео)", "f.opt3": "Виртуальная модель / инфлюенсер", "f.opt4": "Сайт / лендинг", "f.opt5": "Автоматизация / AI-системы",
       "f.msg": "Детали проекта", "f.msg.ph": "Несколько слов о задаче, сроках и бюджете", "f.btn": "Отправить заявку", "f.hint": "Откроется ваш почтовый клиент с готовым письмом.",
-      "ft.tag": "Marina Kalashnikova — AI Creator и архитектор цифровой автоматизации. Премиальный кинематографичный AI-контент и цифровые продукты под ваш бренд.",
+      "ft.tag": "AI Creator & Visual Director", "ft.tag2": "Создаю кинематографичный AI-контент, рекламу и премиальные цифровые продукты для брендов, которые стремятся быть исключительными. От fashion-визуализации до luxury-вебсайтов — каждая деталь создана, чтобы захватывать с первого взгляда.", "ft.tag3": "Каждый кадр — уровень мирового глянца.",
       "ft.h.services": "Услуги", "ft.s1": "AI-контент", "ft.s2": "Виртуальные модели", "ft.s3": "Сайты под ключ", "ft.s4": "Автоматизация",
       "ft.h.studio": "Студия", "ft.l1": "Портфолио", "ft.l2": "Процесс", "ft.l3": "Тарифы", "ft.l4": "Контакты", "ft.made": "Создано с ❤️ и AI",
       "doc.title": "Marina Kalashnikova — AI Creator Studio · Кинематографичный AI-контент"
@@ -305,7 +305,7 @@
       "f.name": "Name", "f.name.ph": "How should I address you", "f.email": "Email", "f.service": "Direction",
       "f.opt1": "AI project (general)", "f.opt2": "AI content (photo / video)", "f.opt3": "Virtual model / influencer", "f.opt4": "Website / landing", "f.opt5": "Automation / AI systems",
       "f.msg": "Project details", "f.msg.ph": "A few words about the task, timeline and budget", "f.btn": "Send request", "f.hint": "Your email app will open with a ready message.",
-      "ft.tag": "Marina Kalashnikova — AI Creator and digital automation architect. Premium cinematic AI content and digital products for your brand.",
+      "ft.tag": "AI Creator & Visual Director", "ft.tag2": "I create cinematic AI content, advertising and premium digital products for brands that strive to be exceptional. From fashion visuals to luxury websites — every detail crafted to captivate at first glance.", "ft.tag3": "Every frame — world gloss level.",
       "ft.h.services": "Services", "ft.s1": "AI content", "ft.s2": "Virtual models", "ft.s3": "Turnkey websites", "ft.s4": "Automation",
       "ft.h.studio": "Studio", "ft.l1": "Portfolio", "ft.l2": "Process", "ft.l3": "Pricing", "ft.l4": "Contacts", "ft.made": "Made with ❤️ and AI",
       "doc.title": "Marina Kalashnikova — AI Creator Studio · Cinematic AI content"
