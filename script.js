@@ -399,7 +399,11 @@
     "portfolio-glamour.jpg",
     "portfolio-figurine.jpg",
     "portfolio-composite.jpg",
-    "portfolio-nike.jpg"
+    "portfolio-nike.jpg",
+    "portfolio-jewelry-1.jpg",
+    "portfolio-jewelry-2.jpg",
+    "portfolio-jewelry-3.jpg",
+    "portfolio-jewelry-4.jpg"
   ];
 
   var videoGallery = [
