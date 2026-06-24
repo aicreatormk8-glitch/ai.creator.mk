@@ -269,6 +269,98 @@
     });
   }
 
+  /* ── FAQ accordion ── */
+  function initFAQ() {
+    document.querySelectorAll(".faq__trigger").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const item = btn.closest(".faq__item");
+        const isOpen = item.getAttribute("aria-expanded") === "true";
+        item.setAttribute("aria-expanded", !isOpen);
+      });
+    });
+  }
+
+  /* ── Contact form ── */
+  function initContactForm() {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = form.querySelector("[name='name']").value.trim();
+      const email = form.querySelector("[name='email']").value.trim();
+      const service = form.querySelector("[name='service']").value;
+      const message = form.querySelector("[name='message']").value.trim();
+      const status = document.getElementById("formStatus");
+
+      // Validation
+      if (!name || !email || !service || !message) {
+        status.textContent = "Будь ласка, заповніть всі обов'язкові поля";
+        status.className = "form-status form-status--error";
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        status.textContent = "Будь ласка, введіть коректну email адресу";
+        status.className = "form-status form-status--error";
+        return;
+      }
+
+      // Show loading state
+      status.textContent = "Надсилання...";
+      status.className = "form-status form-status--loading";
+      const btn = form.querySelector("button[type='submit']");
+      const originalText = btn.textContent;
+      btn.textContent = "Надсилання...";
+      btn.disabled = true;
+
+      // Prepare data
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("service", service);
+      formData.append("message", message);
+
+      // Submit to FormSubmit (free form backend service)
+      fetch("https://formsubmit.co/ajax/aicreatormk8@gmail.com", {
+        method: "POST",
+        body: formData
+      })
+        .then(function (response) {
+          if (response.ok) {
+            status.textContent = "Спасибо! Мы получили ваше сообщение и свяжемся с вами в течение 2 часов.";
+            status.className = "form-status form-status--success";
+            form.reset();
+            setTimeout(function () {
+              status.textContent = "";
+              btn.textContent = originalText;
+              btn.disabled = false;
+            }, 5000);
+          } else {
+            throw new Error("Form submission failed");
+          }
+        })
+        .catch(function () {
+          // Fallback: try mailto
+          const mailtoLink =
+            "mailto:aicreatormk8@gmail.com?subject=Новый запрос: " +
+            encodeURIComponent(service) +
+            "&body=" +
+            encodeURIComponent("Имя: " + name + "\nEmail: " + email + "\n\n" + message);
+          window.location.href = mailtoLink;
+          status.textContent = "Форма отправлена по умолчанию. Проверьте свой почтовый клиент.";
+          status.className = "form-status form-status--info";
+          setTimeout(function () {
+            status.textContent = "";
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 3000);
+        });
+    });
+  }
+
   /* ── Init all ── */
   initMesh();
   initParticles();
@@ -276,6 +368,8 @@
   initParallax();
   initMagneticButtons();
   initSmoothScroll();
+  initFAQ();
+  initContactForm();
 
   // Start reveal animations if page already loaded
   if (document.readyState === "complete") {
