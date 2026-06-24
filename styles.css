@@ -181,9 +181,8 @@ img { max-width: 100%; display: block; }
   position: absolute; inset: 0; z-index: -3;
   background-image: url("hero.jpg");
   background-size: cover; background-position: 50% 42%; background-repeat: no-repeat;
-  transform: scale(1.04); animation: heroZoom 26s ease-in-out infinite alternate;
+  transform: scale(1.12); will-change: transform;
 }
-@keyframes heroZoom { to { transform: scale(1.14); } }
 .hero__scrim {
   position: absolute; inset: 0; z-index: -2; pointer-events: none;
   background:
@@ -191,17 +190,53 @@ img { max-width: 100%; display: block; }
     linear-gradient(90deg, rgba(6,6,12,0.72) 0%, rgba(6,6,12,0.18) 45%, rgba(6,6,12,0.0) 70%),
     radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(6,6,12,0.55) 100%);
 }
-.hero__bokeh { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.hero__bokeh { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; will-change: transform; }
 .hero__bokeh span {
-  position: absolute; border-radius: 50%; filter: blur(2px);
+  position: absolute; border-radius: 50%; filter: blur(4px);
   width: var(--s); height: var(--s); left: var(--l); top: var(--t);
   background: var(--c); opacity: var(--o);
   animation: bokehFloat var(--d) ease-in-out var(--delay) infinite alternate;
-  box-shadow: 0 0 calc(var(--s) * 1.2) var(--c);
+  box-shadow: 0 0 calc(var(--s) * 2.5) var(--c), 0 0 calc(var(--s) * 5) var(--c);
 }
 @keyframes bokehFloat {
   from { transform: translate3d(0,0,0) scale(1); }
-  to { transform: translate3d(12px, -38px, 0) scale(1.25); opacity: 0.25; }
+  to   { transform: translate3d(18px,-50px,0) scale(1.35); opacity: 0.15; }
+}
+
+/* ── Ambient glow orbs ── */
+.hero__ambient { position: absolute; inset: 0; z-index: -2; pointer-events: none; will-change: transform; }
+.hero__ambient::before, .hero__ambient::after { content: ''; position: absolute; border-radius: 50%; }
+.hero__ambient::before {
+  width: 55vw; height: 55vw; max-width: 700px; max-height: 700px;
+  top: -20%; right: -8%;
+  background: radial-gradient(circle, rgba(124,92,255,0.28) 0%, transparent 65%);
+  filter: blur(52px);
+  animation: ambDrift1 16s ease-in-out infinite alternate;
+}
+.hero__ambient::after {
+  width: 42vw; height: 42vw; max-width: 520px; max-height: 520px;
+  bottom: -5%; left: 36%;
+  background: radial-gradient(circle, rgba(62,224,192,0.22) 0%, transparent 65%);
+  filter: blur(42px);
+  animation: ambDrift2 22s ease-in-out infinite alternate;
+}
+@keyframes ambDrift1 { to { transform: translate(-7%, 12%) scale(1.14); } }
+@keyframes ambDrift2 { to { transform: translate(8%, -9%) scale(0.88); } }
+
+/* ── Small glowing particles ── */
+.hero__particles { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; will-change: transform; }
+.hero__particles span {
+  position: absolute; border-radius: 50%;
+  width: var(--s); height: var(--s); left: var(--l); top: var(--t);
+  background: var(--c); opacity: 0;
+  animation: pDrift var(--d) var(--ease, ease-in-out) var(--delay) infinite alternate;
+  box-shadow: 0 0 calc(var(--s) * 3.5) var(--c), 0 0 calc(var(--s) * 8) var(--c);
+}
+@keyframes pDrift {
+  0%   { transform: translate(0,0) scale(0.6); opacity: 0; }
+  18%  { opacity: var(--o); }
+  82%  { opacity: var(--o); }
+  100% { transform: translate(var(--dx,28px), var(--dy,-36px)) scale(1.4); opacity: 0; }
 }
 .hero__letterbox { position: absolute; left: 0; right: 0; height: 8vh; max-height: 70px; z-index: -1; pointer-events: none; background: #06060c; }
 .hero__letterbox--top { top: 0; -webkit-mask: linear-gradient(#000, transparent); mask: linear-gradient(#000, transparent); }
@@ -560,7 +595,9 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; opacity: 1; transform: none; }
   .hero__bg { animation: none; }
-  .hero__bokeh span, .hero__scroll .ic, .pill__dot, .marquee__track { animation: none; }
+  .hero__bokeh span, .hero__particles span, .hero__ambient::before, .hero__ambient::after,
+  .hero__scroll .ic, .pill__dot, .marquee__track { animation: none; }
+  .hero__bg, .hero__bokeh, .hero__particles, .hero__ambient, .hero__content { transform: none !important; }
   .marquee__track { transform: none; }
   * { scroll-behavior: auto; }
 }

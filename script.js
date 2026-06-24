@@ -35,31 +35,85 @@
     });
   }
 
-  /* ── Hero bokeh particles (cinematic) ── */
-  var bokeh = document.getElementById("bokeh");
-  if (bokeh && !reduce) {
-    var colors = [
-      "rgba(255,184,102,0.85)", // warm gold
-      "rgba(124,92,255,0.8)",   // violet
-      "rgba(62,224,192,0.75)",  // cyan
-      "rgba(91,139,255,0.78)",  // blue
-      "rgba(255,255,255,0.55)"
-    ];
-    var n = window.innerWidth < 700 ? 16 : 30;
-    var frag = document.createDocumentFragment();
-    for (var i = 0; i < n; i++) {
-      var s = document.createElement("span");
-      var size = 4 + Math.random() * 16;
-      s.style.setProperty("--s", size.toFixed(1) + "px");
-      s.style.setProperty("--l", (Math.random() * 100).toFixed(2) + "%");
-      s.style.setProperty("--t", (Math.random() * 100).toFixed(2) + "%");
-      s.style.setProperty("--c", colors[(Math.random() * colors.length) | 0]);
-      s.style.setProperty("--o", (0.3 + Math.random() * 0.5).toFixed(2));
-      s.style.setProperty("--d", (8 + Math.random() * 10).toFixed(1) + "s");
-      s.style.setProperty("--delay", (-Math.random() * 10).toFixed(1) + "s");
-      frag.appendChild(s);
+  /* ── Hero: bokeh orbs + glowing particles + mouse parallax ── */
+  var bokeh           = document.getElementById("bokeh");
+  var heroParticlesEl = document.getElementById("heroParticles");
+  var heroBgEl        = document.getElementById("heroBg");
+  var heroAmbientEl   = document.getElementById("heroAmbient");
+  var heroContentEl   = document.getElementById("heroContent");
+  var heroSectionEl   = document.querySelector(".hero");
+
+  if (!reduce) {
+    /* Large blurry bokeh orbs */
+    if (bokeh) {
+      var bokehColors = [
+        "rgba(255,190,80,1)", "rgba(124,92,255,1)", "rgba(62,224,192,1)",
+        "rgba(91,139,255,1)", "rgba(255,120,80,1)"
+      ];
+      var nB = window.innerWidth < 700 ? 14 : 28;
+      var bFrag = document.createDocumentFragment();
+      for (var bi = 0; bi < nB; bi++) {
+        var bEl = document.createElement("span");
+        var bSz = 10 + Math.random() * 24;
+        bEl.style.setProperty("--s", bSz.toFixed(1) + "px");
+        bEl.style.setProperty("--l", (Math.random() * 100).toFixed(2) + "%");
+        bEl.style.setProperty("--t", (Math.random() * 100).toFixed(2) + "%");
+        bEl.style.setProperty("--c", bokehColors[(Math.random() * bokehColors.length) | 0]);
+        bEl.style.setProperty("--o", (0.3 + Math.random() * 0.5).toFixed(2));
+        bEl.style.setProperty("--d", (10 + Math.random() * 14).toFixed(1) + "s");
+        bEl.style.setProperty("--delay", (-Math.random() * 14).toFixed(1) + "s");
+        bFrag.appendChild(bEl);
+      }
+      bokeh.appendChild(bFrag);
     }
-    bokeh.appendChild(frag);
+
+    /* Small crisp glowing particles */
+    if (heroParticlesEl) {
+      var partColors = [
+        "rgba(255,215,80,1)", "rgba(62,224,192,1)", "rgba(180,150,255,1)",
+        "rgba(255,255,255,1)", "rgba(255,160,100,1)"
+      ];
+      var nP = window.innerWidth < 700 ? 22 : 48;
+      var pFrag = document.createDocumentFragment();
+      for (var pi = 0; pi < nP; pi++) {
+        var pEl = document.createElement("span");
+        var pSz = 1.5 + Math.random() * 4.5;
+        pEl.style.setProperty("--s",     pSz.toFixed(1) + "px");
+        pEl.style.setProperty("--l",     (Math.random() * 100).toFixed(2) + "%");
+        pEl.style.setProperty("--t",     (10 + Math.random() * 80).toFixed(2) + "%");
+        pEl.style.setProperty("--c",     partColors[(Math.random() * partColors.length) | 0]);
+        pEl.style.setProperty("--o",     (0.55 + Math.random() * 0.45).toFixed(2));
+        pEl.style.setProperty("--d",     (9 + Math.random() * 18).toFixed(1) + "s");
+        pEl.style.setProperty("--delay", (-Math.random() * 14).toFixed(1) + "s");
+        pEl.style.setProperty("--dx",    ((Math.random() * 80 - 40)).toFixed(1) + "px");
+        pEl.style.setProperty("--dy",    ((Math.random() * -80 - 10)).toFixed(1) + "px");
+        pEl.style.setProperty("--ease",  pi % 3 === 0 ? "cubic-bezier(.25,.8,.25,1)" : "ease-in-out");
+        pFrag.appendChild(pEl);
+      }
+      heroParticlesEl.appendChild(pFrag);
+    }
+
+    /* Mouse parallax */
+    if (heroSectionEl) {
+      var pmX = 0, pmY = 0, pcX = 0, pcY = 0;
+      heroSectionEl.addEventListener("mousemove", function (e) {
+        var r = heroSectionEl.getBoundingClientRect();
+        pmX = (e.clientX - r.left) / r.width  * 2 - 1;
+        pmY = (e.clientY - r.top)  / r.height * 2 - 1;
+      });
+      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; });
+      (function parallaxLoop() {
+        pcX += (pmX - pcX) * 0.055;
+        pcY += (pmY - pcY) * 0.055;
+        var x = pcX, y = pcY;
+        if (heroBgEl)       heroBgEl.style.transform       = "scale(1.12) translate3d(" + (-x*14).toFixed(2) + "px," + (-y*9).toFixed(2)  + "px,0)";
+        if (heroAmbientEl)  heroAmbientEl.style.transform   = "translate3d(" + (-x*22).toFixed(2) + "px," + (-y*16).toFixed(2) + "px,0)";
+        if (bokeh)          bokeh.style.transform           = "translate3d(" + (-x*30).toFixed(2) + "px," + (-y*22).toFixed(2) + "px,0)";
+        if (heroParticlesEl) heroParticlesEl.style.transform = "translate3d(" + (-x*46).toFixed(2) + "px," + (-y*34).toFixed(2) + "px,0)";
+        if (heroContentEl)  heroContentEl.style.transform   = "translate3d(" + ( x*7).toFixed(2)  + "px," + ( y*4).toFixed(2)  + "px,0)";
+        requestAnimationFrame(parallaxLoop);
+      })();
+    }
   }
 
   /* ── Portfolio video autoplay fix for iOS/Android ── */
