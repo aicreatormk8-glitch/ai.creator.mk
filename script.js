@@ -161,19 +161,17 @@
     });
   });
 
-  /* ── Contact form → mailto (no backend, works on static hosting) ── */
+  /* ── Contact form (FormSubmit backend) ── */
   var form = document.getElementById("contact-form");
   var hint = document.getElementById("cf-hint");
   if (form) {
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
       var name = form.name.value.trim();
       var email = form.email.value.trim();
-      var service = form.service.value;
-      var message = form.message.value.trim();
-
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
       if (!name || !emailOk) {
+        e.preventDefault();
         hint.textContent = !name
           ? "Будь ласка, вкажіть ваше ім'я."
           : "Будь ласка, введіть коректний email.";
@@ -182,20 +180,10 @@
         return;
       }
 
-      var subject = "Заявка з сайту — " + service;
-      var body =
-        "Ім'я: " + name + "\n" +
-        "Email: " + email + "\n" +
-        "Напрям: " + service + "\n\n" +
-        "Деталі:\n" + (message || "—");
-      var url = "mailto:aicreatormk8@gmail.com?subject=" +
-        encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-
       hint.textContent = (currentLang === "ru")
-        ? "Открываем ваш почтовый клиент…"
-        : currentLang === "en" ? "Opening your email app…" : "Відкриваємо ваш поштовий застосунок…";
+        ? "Отправляем заявку…"
+        : currentLang === "en" ? "Sending…" : "Відправляємо заявку…";
       hint.style.color = "";
-      window.location.href = url;
     });
   }
 
