@@ -96,14 +96,14 @@
       heroParticlesEl.appendChild(pFrag);
     }
 
-    /* Mouse parallax (depth) + click burst that briefly accelerates the particles */
+    /* Pointer parallax (depth) — works for mouse, pen AND touch on phones/tablets */
     if (heroSectionEl) {
       var pmX = 0, pmY = 0, pcX = 0, pcY = 0;
       var lastMX = null, lastMY = null;  /* last pointer position (px) */
       var vel = 0;                       /* recent pointer movement speed */
-      var boost = 0;                     /* extra burst from a click */
+      var boost = 0;                     /* extra burst from a tap/click */
       var spd = 1;                       /* current particle animation-speed multiplier */
-      heroSectionEl.addEventListener("mousemove", function (e) {
+      function onMove(e) {
         var r = heroSectionEl.getBoundingClientRect();
         pmX = (e.clientX - r.left) / r.width  * 2 - 1;
         pmY = (e.clientY - r.top)  / r.height * 2 - 1;
@@ -112,9 +112,13 @@
           vel += Math.sqrt(dx * dx + dy * dy);   /* faster movement → more energy */
         }
         lastMX = e.clientX; lastMY = e.clientY;
-      });
-      heroSectionEl.addEventListener("mouseleave", function () { pmX = 0; pmY = 0; lastMX = null; });
-      /* Click also gives an extra burst on top of movement */
+      }
+      function onLeave() { pmX = 0; pmY = 0; lastMX = null; }   /* ease back to centre */
+      heroSectionEl.addEventListener("pointermove", onMove, { passive: true });
+      heroSectionEl.addEventListener("pointerleave", onLeave);
+      heroSectionEl.addEventListener("pointerup", onLeave);          /* finger lifted → recentre */
+      heroSectionEl.addEventListener("pointercancel", onLeave);
+      /* Tap/click anywhere on the hero → burst of speed on top of movement */
       heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 0.8, 1.2); });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
