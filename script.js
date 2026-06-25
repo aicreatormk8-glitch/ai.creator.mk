@@ -97,30 +97,36 @@
       heroParticlesEl.appendChild(pFrag);
     }
 
-    /* Pointer parallax (depth) — works for mouse, pen AND touch on phones/tablets */
+    /* Parallax (depth): mouse on desktop (as before) + touch on phones/tablets */
     if (heroSectionEl) {
       var pmX = 0, pmY = 0, pcX = 0, pcY = 0;
       var lastMX = null, lastMY = null;  /* last pointer position (px) */
       var vel = 0;                       /* recent pointer movement speed */
       var boost = 0;                     /* extra burst from a tap/click */
       var spd = 1;                       /* current particle animation-speed multiplier */
-      function onMove(e) {
+      function onMove(cx, cy) {
         var r = heroSectionEl.getBoundingClientRect();
-        pmX = (e.clientX - r.left) / r.width  * 2 - 1;
-        pmY = (e.clientY - r.top)  / r.height * 2 - 1;
+        pmX = (cx - r.left) / r.width  * 2 - 1;
+        pmY = (cy - r.top)  / r.height * 2 - 1;
         if (lastMX !== null) {
-          var dx = e.clientX - lastMX, dy = e.clientY - lastMY;
+          var dx = cx - lastMX, dy = cy - lastMY;
           vel += Math.sqrt(dx * dx + dy * dy);   /* faster movement → more energy */
         }
-        lastMX = e.clientX; lastMY = e.clientY;
+        lastMX = cx; lastMY = cy;
       }
       function onLeave() { pmX = 0; pmY = 0; lastMX = null; }   /* ease back to centre */
-      heroSectionEl.addEventListener("pointermove", onMove, { passive: true });
-      heroSectionEl.addEventListener("pointerleave", onLeave);
-      heroSectionEl.addEventListener("pointerup", onLeave);          /* finger lifted → recentre */
-      heroSectionEl.addEventListener("pointercancel", onLeave);
+      /* Desktop mouse — exactly as before */
+      heroSectionEl.addEventListener("mousemove", function (e) { onMove(e.clientX, e.clientY); });
+      heroSectionEl.addEventListener("mouseleave", onLeave);
+      /* Touch (iOS / Android) */
+      heroSectionEl.addEventListener("touchmove", function (e) {
+        if (e.touches && e.touches[0]) onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      heroSectionEl.addEventListener("touchend", onLeave);
+      heroSectionEl.addEventListener("touchcancel", onLeave);
       /* Tap/click anywhere on the hero → burst of speed on top of movement */
-      heroSectionEl.addEventListener("pointerdown", function () { boost = Math.min(boost + 0.8, 1.2); });
+      heroSectionEl.addEventListener("mousedown", function () { boost = Math.min(boost + 0.8, 1.2); });
+      heroSectionEl.addEventListener("touchstart", function () { boost = Math.min(boost + 0.8, 1.2); }, { passive: true });
       (function parallaxLoop() {
         pcX += (pmX - pcX) * 0.055;
         pcY += (pmY - pcY) * 0.055;
