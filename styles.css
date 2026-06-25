@@ -594,11 +594,10 @@ img { max-width: 100%; display: block; }
 
 /* ░░ Reduced motion ░░ */
 @media (prefers-reduced-motion: reduce) {
+  /* Hero particle / parallax effects intentionally kept on for every device,
+     even with reduce-motion. Only non-essential UI motion is calmed here. */
   .reveal { transition: none; opacity: 1; transform: none; }
-  .hero__bg { animation: none; }
-  .hero__bokeh span, .hero__particles span, .hero__ambient::before, .hero__ambient::after,
-  .hero__scroll .ic, .pill__dot, .marquee__track { animation: none; }
-  .hero__bg, .hero__bokeh, .hero__particles, .hero__ambient, .hero__content { transform: none !important; }
+  .hero__scroll .ic, .marquee__track { animation: none; }
   .marquee__track { transform: none; }
   * { scroll-behavior: auto; }
 }

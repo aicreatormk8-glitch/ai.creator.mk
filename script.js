@@ -43,7 +43,8 @@
   var heroContentEl   = document.getElementById("heroContent");
   var heroSectionEl   = document.querySelector(".hero");
 
-  if (!reduce) {
+  /* Hero FX run on every device (Windows / iOS / Android), even with "reduce motion" on */
+  {
     /* Large blurry bokeh orbs */
     if (bokeh) {
       var bokehColors = [
