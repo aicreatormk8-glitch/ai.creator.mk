@@ -594,10 +594,9 @@ img { max-width: 100%; display: block; }
 
 /* ░░ Reduced motion ░░ */
 @media (prefers-reduced-motion: reduce) {
-  /* Hero particle / parallax effects intentionally kept on for every device,
-     even with reduce-motion. Only non-essential UI motion is calmed here. */
+  /* Decorative effects (hero particles/parallax, marquee, scroll arrow) stay on
+     for every device, even with reduce-motion. Only neutralise content reveal
+     transitions and smooth-scroll, which are genuine accessibility concerns. */
   .reveal { transition: none; opacity: 1; transform: none; }
-  .hero__scroll .ic, .marquee__track { animation: none; }
-  .marquee__track { transform: none; }
   * { scroll-behavior: auto; }
 }
